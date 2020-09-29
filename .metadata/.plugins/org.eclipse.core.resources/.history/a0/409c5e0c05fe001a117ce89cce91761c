@@ -1,0 +1,288 @@
+package POS_Problem_Domain;
+
+import java.util.*;
+
+/**
+ * The information regarding a store at a single location
+ */
+public class Store {
+
+	/**
+	 * The number of the store for a chain
+	 */
+	private String number;
+	/**
+	 * The name of the store chain
+	 */
+	private String name;
+	/**
+	 * The tax categories that the store deals with
+	 */
+	private Collection<TaxCategory> taxCategories;
+	/**
+	 * The items that are available for purchase in the store
+	 */
+	private TreeMap<String, Item> items;
+	/**
+	 * The cashiers who work at the store
+	 */
+	private Collection<Cashier> cashiers;
+	/**
+	 * The registers that are used in the store
+	 */
+	private Collection<Register> registers;
+	/**
+	 * The sale sessions that occur in the store
+	 */
+	private Collection<Session> sessions;
+	/**
+	 * The UPCs of the items in the store
+	 */
+	private Collection<UPC> upcs;
+
+	public String getNumber() {
+		return this.number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Collection<TaxCategory> getTaxCategories() {
+		return this.taxCategories;
+	}
+
+	public void setTaxCategories(Collection<TaxCategory> taxCategories) {
+		this.taxCategories = taxCategories;
+	}
+
+	public TreeMap<String, Item> getItems() {
+		return this.items;
+	}
+
+	public void setItems(TreeMap<String, Item> items) {
+		this.items = items;
+	}
+
+	public Collection<Cashier> getCashiers() {
+		return this.cashiers;
+	}
+
+	public void setCashiers(Collection<Cashier> cashiers) {
+		this.cashiers = cashiers;
+	}
+
+	public Collection<Register> getRegisters() {
+		return this.registers;
+	}
+
+	public void setRegisters(Collection<Register> registers) {
+		this.registers = registers;
+	}
+
+	public Collection<Session> getSessions() {
+		return this.sessions;
+	}
+
+	public void setSessions(Collection<Session> sessions) {
+		this.sessions = sessions;
+	}
+
+	public Collection<UPC> getUpcs() {
+		return this.upcs;
+	}
+
+	public void setUpcs(Collection<UPC> upcs) {
+		this.upcs = upcs;
+	}
+
+	/**
+	 * Default Constructor
+	 */
+	public Store() {
+		// TODO - implement Store.Store
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Constructor initializes the store number and the name of the store
+	 * @param number
+	 * @param name
+	 */
+	public Store(String number, String name) {
+		this(); // Call Default Constructor
+		this.setNumber(number); // Set the store's number
+		this.setName(name); // Set the store's name
+	}
+
+	/**
+	 * Add an item to the shelf in the store
+	 * @param item
+	 */
+	public void addItem(Item item) {
+
+		this.items.put(item.getNumber(), item);
+	}
+
+	/**
+	 * Remove an item from the shelf in the store
+	 * @param item
+	 */
+	public void removeItem(Item item) {
+		// TODO - implement Store.removeItem
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Add the UPC of an item in the store
+	 * @param upc
+	 */
+	public void addUPC(UPC upc) {
+		// TODO - implement Store.addUPC
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Remove the UPC of an item from the store
+	 * @param upc
+	 */
+	public void removeUPC(UPC upc) {
+		// TODO - implement Store.removeUPC
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Add a register to the store
+	 * @param register
+	 */
+	public void addRegister(Register register) {
+		// TODO - implement Store.addRegister
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Remove a register from the store
+	 * @param register
+	 */
+	public void removeRegister(Register register) {
+		// TODO - implement Store.removeRegister
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Add a new cashier to the store
+	 * @param cashier
+	 */
+	public void addCashier(Cashier cashier) {
+		// TODO - implement Store.addCashier
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Remove a cashier from the store
+	 * @param cashier
+	 */
+	public void removeCashier(Cashier cashier) {
+		// TODO - implement Store.removeCashier
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Add a tax category the store deals with
+	 * @param taxCategory
+	 */
+	public void addTaxCategory(TaxCategory taxCategory) {
+		// TODO - implement Store.addTaxCategory
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Remove a tax category from the store
+	 * @param taxCategory
+	 */
+	public void removeTaxCategory(TaxCategory taxCategory) {
+		// TODO - implement Store.removeTaxCategory
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Add a new session to the store
+	 * @param session
+	 */
+	public void addSession(Session session) {
+		// TODO - implement Store.addSession
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Remove a session from the store
+	 * @param session
+	 */
+	public void removeSession(Session session) {
+		// TODO - implement Store.removeSession
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Find a register based on its identifying number
+	 * @param number
+	 */
+	public Register findRegisterByNumber(String number) {
+		// TODO - implement Store.findRegisterByNumber
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Find an item in the store based on its UPC
+	 * @param upc
+	 */
+	public Item findItemByUPC(String upc) {
+		// TODO - implement Store.findItemByUPC
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Find an item based on its identifying number
+	 * @param number
+	 */
+	public Item findItemByNumber(String number) {
+		// TODO - implement Store.findItemByNumber
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Find a cashier based on their employee number
+	 * @param number
+	 */
+	public Cashier findCashierByNumber(String number) {
+		// TODO - implement Store.findCashierByNumber
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Find a tax category based on its name
+	 * @param category
+	 */
+	public TaxCategory findTaxCategoryByName(String category) {
+		// TODO - implement Store.findTaxCategoryByName
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Format the relevant information regarding a store into a single string that can be printed to a display.
+	 */
+	public String toString() {
+		// TODO - implement Store.toString
+		throw new UnsupportedOperationException();
+	}
+
+
+}

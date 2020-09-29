@@ -1,0 +1,12 @@
+package Problem_Domain_Tests;
+
+import POS_Problem_Domain.Person;
+
+public class PersonTest {
+	System.out.println("/nBegin Person Test");
+	Person monster = new Person("Mike Wazowski", "2319 NE Incorporation Blvd.", "Monstropolis", "Monsteria", "78321", "928-182-8194");
+	
+	// Print out the information stored in monster
+	System.out.println(monster) ;
+	System.out.println("/nEnd Person Test/n");
+}
