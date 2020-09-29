@@ -50,7 +50,8 @@ public class Price {
 	 * Default Constructor
 	 */
 	public Price() {
-		System.out.println("There is no default constructor for Price.\n");
+		// TODO - implement Price.Price
+		throw new UnsupportedOperationException();
 	}
 
 	/**

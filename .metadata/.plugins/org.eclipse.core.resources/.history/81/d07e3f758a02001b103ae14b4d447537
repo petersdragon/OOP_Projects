@@ -1,7 +1,6 @@
 package POS_Problem_Domain;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Information regarding a temporary reduction of the regular sale price
@@ -25,7 +24,8 @@ public class PromoPrice extends Price {
 	 * Default Constructor
 	 */
 	public PromoPrice() {
-		System.out.println("There is no default constructor for PromoPrice.\n");
+		// TODO - implement PromoPrice.PromoPrice
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -35,9 +35,8 @@ public class PromoPrice extends Price {
 	 * @param endDate
 	 */
 	public PromoPrice(String price, String effectiveDate, String endDate) {
-		super(price, effectiveDate);
-		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
-		this.setEndDate(LocalDate.parse(effectiveDate, dateFormat));
+		// TODO - implement PromoPrice.PromoPrice
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -45,7 +44,8 @@ public class PromoPrice extends Price {
 	 * @param date
 	 */
 	public Boolean isEffective(LocalDate date) {
-		return this.getEffectiveDate().equals(date);
+		// TODO - implement PromoPrice.isEffective
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -53,14 +53,16 @@ public class PromoPrice extends Price {
 	 * @param price
 	 */
 	public int compareTo(Price price) {
-		return this.getEffectiveDate().compareTo(price.getEffectiveDate());
+		// TODO - implement PromoPrice.compareTo
+		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * Format the relevant information regarding a PromoPrice into a single string that can be printed to a display.
 	 */
 	public String toString() {
-		return this.getPrice().toString();
+		// TODO - implement PromoPrice.toString
+		throw new UnsupportedOperationException();
 	}
 
 

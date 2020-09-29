@@ -25,7 +25,8 @@ public class PromoPrice extends Price {
 	 * Default Constructor
 	 */
 	public PromoPrice() {
-		System.out.println("There is no default constructor for PromoPrice.\n");
+		// TODO - implement PromoPrice.PromoPrice
+		throw new UnsupportedOperationException();
 	}
 
 	/**

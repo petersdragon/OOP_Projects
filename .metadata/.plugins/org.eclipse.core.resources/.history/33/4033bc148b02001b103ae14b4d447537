@@ -34,7 +34,8 @@ public class UPC {
 	 * Default Constructor
 	 */
 	public UPC() {
-		this.getItem().addUPC(this);
+		// TODO - implement UPC.UPC
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -42,8 +43,11 @@ public class UPC {
 	 * @param upc
 	 */
 	public UPC(String upc) {
-		this();
 		this.setUpc(upc);
+/*
+		setItem
+		item.addUPC(upc)
+*/
 	}
 
 	/**

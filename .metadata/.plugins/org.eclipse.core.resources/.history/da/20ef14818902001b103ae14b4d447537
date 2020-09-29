@@ -50,7 +50,8 @@ public class Price {
 	 * Default Constructor
 	 */
 	public Price() {
-		System.out.println("There is no default constructor for Price.\n");
+		// TODO - implement Price.Price
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -77,7 +78,8 @@ public class Price {
 	 * @param quantity
 	 */
 	public BigDecimal calcAmountForQty(int quantity) {
-		return this.getPrice().multiply(new BigDecimal(quantity));
+		// TODO - implement Price.calcAmountForQty
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -92,7 +94,8 @@ public class Price {
 	 * Format the relevant information regarding Price into a single string that can be printed to a display.
 	 */
 	public String toString() {
-		return this.getPrice().toString();
+		return "Price toString has not been set up yet.\n";
 	}
+
 
 }

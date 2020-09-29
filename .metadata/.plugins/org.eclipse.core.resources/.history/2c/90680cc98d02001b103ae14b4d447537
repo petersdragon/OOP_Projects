@@ -1,7 +1,6 @@
 package POS_Problem_Domain;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
 /**
  * An item that is being sold.
@@ -60,31 +59,33 @@ public class SaleLineItem {
 	 * @param quantity
 	 * @param String
 	 */
-	public SaleLineItem(Sale sale, Item item, String quantity) {
-		this.setSale(sale);
-		this.setItem(item);
-		this.setQuantity(new Integer(quantity));
+	public SaleLineItem(Sale sale, Item item, int quantity, int String) {
+		// TODO - implement SaleLineItem.SaleLineItem
+		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * Calculate the total price of the Items in the SaleLineItem
 	 */
 	public BigDecimal calcSubTotal() {
-		return this.getItem().calcAmountForDateQty(LocalDate.now(), this.getQuantity());
+		// TODO - implement SaleLineItem.calcSubTotal
+		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * Calculate the tax for the SaleLineItem from the subtotal
 	 */
 	public BigDecimal calcTax() {
-		return this.getItem().getTaxRateForDate(LocalDate.now()).multiply(new BigDecimal(this.getQuantity()));
+		// TODO - implement SaleLineItem.calcTax
+		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * Format the relevant information regarding a SaleLineItem into a single string that can be printed to a display.
 	 */
 	public String toString() {
-		return this.getItem().getNumber() + " " + this.getItem().getDescription() + " " + new Integer(this.getQuantity()).toString() + "@" + this.getItem().getPriceForDate(LocalDate.now()) + " " + this.getItem().getPriceForDate(LocalDate.now()).getEffectiveDate().toString() + this.calcSubTotal().toString();
+		// TODO - implement SaleLineItem.toString
+		throw new UnsupportedOperationException();
 	}
 
 
