@@ -34,8 +34,7 @@ public class Register {
 	 * Default Constructor
 	 */
 	public Register() {
-		// TODO - implement Register.Register
-		throw new UnsupportedOperationException();
+		this.setCashDrawer(new CashDrawer());
 	}
 
 	/**
@@ -43,16 +42,15 @@ public class Register {
 	 * @param number
 	 */
 	public Register(String number) {
-		// TODO - implement Register.Register
-		throw new UnsupportedOperationException();
+		this();
+		this.setNumber(number);
 	}
 
 	/**
 	 * Formats the relevant information regarding a Register and returns it in a single string to print to a display
 	 */
 	public String toString() {
-		// TODO - implement Register.toString
-		throw new UnsupportedOperationException();
+		return this.getNumber();
 	}
 
 

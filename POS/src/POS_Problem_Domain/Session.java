@@ -20,7 +20,7 @@ public class Session {
 	/**
 	 * The information regarding the sale for the session
 	 */
-	private Collection<Sale> sales;
+	private ArrayList<Sale> sales;
 	/**
 	 * The time at which the session began
 	 */
@@ -46,11 +46,11 @@ public class Session {
 		this.cashier = cashier;
 	}
 
-	public Collection<Sale> getSales() {
+	public ArrayList<Sale> getSales() {
 		return this.sales;
 	}
 
-	public void setSales(Collection<Sale> sales) {
+	public void setSales(ArrayList<Sale> sales) {
 		this.sales = sales;
 	}
 
@@ -79,13 +79,14 @@ public class Session {
 	}
 
 	/**
-	 * Constructor initializes the cashier and register in use
+	 * Constructor initializes the cashier, register in use, and start time of the session.
 	 * @param cashier
 	 * @param register
 	 */
 	public Session(Cashier cashier, Register register) {
-		// TODO - implement Session.Session
-		throw new UnsupportedOperationException();
+		this.setCashier(cashier);
+		this.setRegister(register);
+		this.setStartDateTime(LocalDateTime.now());
 	}
 
 	/**
@@ -93,8 +94,7 @@ public class Session {
 	 * @param sale
 	 */
 	public void addSale(Sale sale) {
-		// TODO - implement Session.addSale
-		throw new UnsupportedOperationException();
+		this.getSales().add(sale);
 	}
 
 	/**
@@ -102,25 +102,32 @@ public class Session {
 	 * @param sale
 	 */
 	public void removeSale(Sale sale) {
-		// TODO - implement Session.removeSale
-		throw new UnsupportedOperationException();
+		this.getSales().remove(sale);
 	}
 
 	/**
-	 * Calculate the difference between the amount of money that is being tendered and the total price of the sale.
+	 * Calculate the difference between the amount of money that is being tendered and the total price of the sale session.
 	 * @param cash
 	 */
 	public BigDecimal calcCashCountDiff(BigDecimal cash) {
-		// TODO - implement Session.calcCashCountDiff
-		throw new UnsupportedOperationException();
+		return cash.subtract(this.getTotal());
 	}
 
+	/**
+	 * Calculate the total cost of all the sales in the session
+	 */
+	public BigDecimal getTotal() {
+		BigDecimal total = new BigDecimal(0);
+		for (Sale sale : this.getSales())
+			total.add(sale.calcTotal());
+		return total;
+	}
+	
 	/**
 	 * Format the relevant information regarding a single session into a single string to print to a display.
 	 */
 	public String toString() {
-		// TODO - implement Session.toString
-		throw new UnsupportedOperationException();
+		return "Session: Cashier: " + this.getCashier().getPerson().getName() + " Register: " + this.getRegister().getNumber() + " Date: " + LocalDateTime.now() + " Total: " + this.getTotal().toString() + "\n" + this.getSales().toString();
 	}
 
 

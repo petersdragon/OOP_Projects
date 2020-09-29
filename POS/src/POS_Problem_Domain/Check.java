@@ -1,5 +1,7 @@
 package POS_Problem_Domain;
 
+import java.math.BigDecimal;
+
 /**
  * Handles the payment option of using a Check
  */
@@ -57,25 +59,23 @@ public class Check extends AuthorizedPayment {
 	 * @param checkNumber
 	 */
 	public Check(String amount, String accountNumber, String checkNumber) {
-		// TODO - implement Check.Check
-		throw new UnsupportedOperationException();
+		this.setAmountTendered(new BigDecimal(amount));
+		this.setAccountNumber(accountNumber);
+		this.setCheckNumber(checkNumber);
 	}
 
 	/**
 	 * Determine whether the payment method is valid
 	 */
 	public Boolean isAuthorized() {
-		// TODO - implement Check.isAuthorized
-		throw new UnsupportedOperationException();
+		return true;
 	}
 
 	/**
 	 * Format the relevant information into a single string to be printed to a display
 	 */
 	public String toString() {
-		// TODO - implement Check.toString
-		throw new UnsupportedOperationException();
+		return this.getAccountNumber() + " " + this.getAmountTendered();
 	}
-
-
+	
 }

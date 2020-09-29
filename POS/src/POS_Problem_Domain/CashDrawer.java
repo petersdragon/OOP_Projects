@@ -36,8 +36,7 @@ public class CashDrawer {
 	 * Default Constructor
 	 */
 	public CashDrawer() {
-		// TODO - implement CashDrawer.CashDrawer
-		throw new UnsupportedOperationException();
+		this.setCashAmount(new BigDecimal(0));
 	}
 
 	/**
@@ -45,8 +44,7 @@ public class CashDrawer {
 	 * @param cash
 	 */
 	public void removeCash(BigDecimal cash) {
-		// TODO - implement CashDrawer.removeCash
-		throw new UnsupportedOperationException();
+		this.setCashAmount(this.getCashAmount().subtract(cash));
 	}
 
 	/**
@@ -54,13 +52,11 @@ public class CashDrawer {
 	 * @param cash
 	 */
 	public void addCash(BigDecimal cash) {
-		// TODO - implement CashDrawer.addCash
-		throw new UnsupportedOperationException();
+		this.setCashAmount(this.getCashAmount().add(cash));
 	}
 
 	public String toString() {
-		// TODO - implement CashDrawer.toString
-		throw new UnsupportedOperationException();
+		return this.getCashAmount().toString();
 	}
 
 

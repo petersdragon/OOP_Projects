@@ -12,11 +12,11 @@ public class Sale {
 	/**
 	 * The methods of payment used for purchasing the items
 	 */
-	private Collection<Payment> payments;
+	private ArrayList<Payment> payments;
 	/**
 	 * The information regarding the items being sold
 	 */
-	private Collection<SaleLineItem> saleLineItems;
+	private ArrayList<SaleLineItem> saleLineItems;
 	/**
 	 * The date and time at which the purchase took place
 	 */
@@ -26,19 +26,19 @@ public class Sale {
 	 */
 	private Boolean taxFree;
 
-	public Collection<Payment> getPayments() {
+	public ArrayList<Payment> getPayments() {
 		return this.payments;
 	}
 
-	public void setPayments(Collection<Payment> payments) {
+	public void setPayments(ArrayList<Payment> payments) {
 		this.payments = payments;
 	}
 
-	public Collection<SaleLineItem> getSaleLineItems() {
+	public ArrayList<SaleLineItem> getSaleLineItems() {
 		return this.saleLineItems;
 	}
 
-	public void setSaleLineItems(Collection<SaleLineItem> saleLineItems) {
+	public void setSaleLineItems(ArrayList<SaleLineItem> saleLineItems) {
 		this.saleLineItems = saleLineItems;
 	}
 
@@ -71,8 +71,7 @@ public class Sale {
 	 * @param taxFree
 	 */
 	public Sale(String taxFree) {
-		// TODO - implement Sale.Sale
-		throw new UnsupportedOperationException();
+		this.setTaxFree(Boolean.parseBoolean(taxFree));
 	}
 
 	/**
@@ -80,8 +79,7 @@ public class Sale {
 	 * @param payment
 	 */
 	public void addPayment(Payment payment) {
-		// TODO - implement Sale.addPayment
-		throw new UnsupportedOperationException();
+		this.getPayments().add(payment);
 	}
 
 	/**
@@ -89,8 +87,7 @@ public class Sale {
 	 * @param payment
 	 */
 	public void removePayment(Payment payment) {
-		// TODO - implement Sale.removePayment
-		throw new UnsupportedOperationException();
+		this.getPayments().remove(payment);
 	}
 
 	/**
@@ -98,8 +95,7 @@ public class Sale {
 	 * @param saleItem
 	 */
 	public void addSaleLineItem(SaleLineItem saleItem) {
-		// TODO - implement Sale.addSaleLineItem
-		throw new UnsupportedOperationException();
+		this.getSaleLineItems().add(saleItem);
 	}
 
 	/**
@@ -107,32 +103,34 @@ public class Sale {
 	 * @param saleItem
 	 */
 	public void removeSaleLineItem(SaleLineItem saleItem) {
-		// TODO - implement Sale.removeSaleLineItem
-		throw new UnsupportedOperationException();
+		this.getSaleLineItems().remove(saleItem);
 	}
 
 	/**
 	 * Calculate the total price of all items in the transaction including tax
 	 */
 	public BigDecimal calcTotal() {
-		// TODO - implement Sale.calcTotal
-		throw new UnsupportedOperationException();
+		return this.calcSubTotal().add(this.calcTax());
 	}
 
 	/**
 	 * Calculate the total price of all items in the transaction (not including tax)
 	 */
 	public BigDecimal calcSubTotal() {
-		// TODO - implement Sale.calcSubTotal
-		throw new UnsupportedOperationException();
+		BigDecimal subTotal = new BigDecimal(0);
+		for (SaleLineItem saleItem : this.getSaleLineItems())
+			subTotal.add(saleItem.calcSubTotal());
+		return subTotal;
 	}
 
 	/**
 	 * Calculate the amount that need to be added to the subtotal due to tax
 	 */
 	public BigDecimal calcTax() {
-		// TODO - implement Sale.calcTax
-		throw new UnsupportedOperationException();
+		BigDecimal taxTotal = new BigDecimal(0);
+		for (SaleLineItem saleItem : this.getSaleLineItems())
+			taxTotal.add(saleItem.calcTax());
+		return taxTotal;
 	}
 
 	/**
@@ -145,10 +143,11 @@ public class Sale {
 
 	/**
 	 * Determine whether the customer has provided enough money to purchase all of the items
+	 * Returns a value greater than 0 if the payment is enough
 	 */
 	public Boolean isPaymentEnough() {
-		// TODO - implement Sale.isPaymentEnough
-		throw new UnsupportedOperationException();
+		Boolean isEnough = (this.calcAmountTendered().compareTo(this.calcTotal()) >= 0);
+		return isEnough;
 	}
 
 	/**
@@ -164,24 +163,24 @@ public class Sale {
 	 * Determine how much change the customer should get for their purchase
 	 */
 	public BigDecimal calcChange() {
-		// TODO - implement Sale.calcChange
-		throw new UnsupportedOperationException();
+		return this.calcAmountTendered().subtract(this.calcTotal());
 	}
 
 	/**
 	 * Total the amount of money the customer has tendered from all of their payment methods
 	 */
 	public BigDecimal calcAmountTendered() {
-		// TODO - implement Sale.calcAmountTendered
-		throw new UnsupportedOperationException();
+		BigDecimal totalPaid = new BigDecimal(0);
+		for (Payment payment : this.getPayments())
+			totalPaid.add(payment.getAmountTendered());
+		return totalPaid;
 	}
 
 	/**
 	 * Format the relevant information regarding a Sale into a single string that can be printed to a display
 	 */
 	public String toString() {
-		// TODO - implement Sale.toString
-		throw new UnsupportedOperationException();
+		return "Sale: Subtotal: " + this.calcSubTotal() + " Tax: " + this.calcTax() + " Total: " + this.calcTotal() + " Payment: " + this.calcAmountTendered() + " Change: " + this.calcChange() + "\n" + this.getSaleLineItems();
 	}
 
 

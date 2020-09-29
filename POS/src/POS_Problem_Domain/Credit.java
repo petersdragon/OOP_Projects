@@ -59,24 +59,25 @@ public class Credit extends AuthorizedPayment {
 	 * @param expireDate
 	 */
 	public Credit(String cardType, String accountNumber, String expireDate) {
-		// TODO - implement Credit.Credit
-		throw new UnsupportedOperationException();
+		this.setCardType(cardType);
+		this.setAccountNumber(accountNumber);
+		this.setExpireDate(LocalDate.parse(expireDate));
 	}
 
 	/**
 	 * Determine whether the method of payment is valid
+	 * Return 1 if expiration date is greater than today's date
 	 */
 	public Boolean isAuthorized() {
-		// TODO - implement Credit.isAuthorized
-		throw new UnsupportedOperationException();
+		Boolean authorized = (this.getExpireDate().compareTo(LocalDate.now()) >= 0);
+		return authorized;
 	}
 
 	/**
 	 * Format the relevant information into a single string that can be printed to a display
 	 */
 	public String toString() {
-		// TODO - implement Credit.toString
-		throw new UnsupportedOperationException();
+		return this.getCardType() + " " + this.getAccountNumber() + " " + this.getExpireDate();
 	}
 
 

@@ -21,24 +21,22 @@ public class Cash extends Payment {
 	 * @param amountTendered
 	 */
 	public Cash(String amount, BigDecimal amountTendered) {
-		// TODO - implement Cash.Cash
-		throw new UnsupportedOperationException();
+		this.setAmount(new BigDecimal(amount));
+		this.setAmountTendered(amountTendered);
 	}
 
 	/**
 	 * Determine whether the payment method is valid
 	 */
 	public Boolean countsAsCash() {
-		// TODO - implement Cash.countsAsCash
-		throw new UnsupportedOperationException();
+		return true;
 	}
 
 	/**
 	 * Format the relevant information regarding the Cash into a single string to print to a display.
 	 */
 	public String toString() {
-		// TODO - implement Cash.toString
-		throw new UnsupportedOperationException();
+		return "Total: " + this.getAmount() + " Tendered: " + this.getAmountTendered();
 	}
 
 

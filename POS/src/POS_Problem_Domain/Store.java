@@ -262,8 +262,8 @@ public class Store {
 	/**
 	 * Format the relevant information regarding a store into a single string that can be printed to a display.
 	 */
-	public String toString() {
-		return "Store toString has not been set up yet.\n";
+	public String toString() {		
+		return this.getName() + "\n==========\nCashiers\n==========\\n" + this.getCashiers().toString() + "\n==========\nRegisters\n==========\\n" + this.getRegisters().toString() + "\n==========\nItems\n==========\\n" + this.getItems().toString() + "\n==========\nSessions\n==========\\n" + this.getSessions().toString() + "\n==========\n";
 	}
 
 

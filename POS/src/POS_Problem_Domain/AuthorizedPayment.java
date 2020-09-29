@@ -30,8 +30,7 @@ public abstract class AuthorizedPayment extends Payment {
 	 * Determine whether the payment method is a valid payment method
 	 */
 	public Boolean countsAsCash() {
-		// TODO - implement AuthorizedPayment.countsAsCash
-		throw new UnsupportedOperationException();
+		return this.isAuthorized();
 	}
 
 
