@@ -108,8 +108,12 @@ public class Store {
 	 * Default Constructor
 	 */
 	public Store() {
-		// TODO - implement Item.Item
-		throw new UnsupportedOperationException();
+		this.taxCategories = new TreeMap<String, TaxCategory>();
+		this.items = new TreeMap<String, Item>();
+		this.cashiers = new TreeMap<String, Cashier>();
+		this.registers = new TreeMap<String, Register>();
+		this.sessions = new ArrayList<Session>();
+		this.upcs = new TreeMap<String, UPC>();
 	}
 
 	/**
@@ -118,6 +122,7 @@ public class Store {
 	 * @param name
 	 */
 	public Store(String number, String name) {
+		this();
 		this.setNumber(number); // Set the store's number
 		this.setName(name); // Set the store's name
 	}

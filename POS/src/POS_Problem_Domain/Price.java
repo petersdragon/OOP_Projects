@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * The information regarding the cost to purchase an Item in the store.
  */
-public class Price {
+public class Price implements Comparable<Price>{
 
 	/**
 	 * The price of the item in question

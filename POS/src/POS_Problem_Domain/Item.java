@@ -87,7 +87,9 @@ public class Item {
 	 */
 	public Item() {
 		//Add UPC to Item?
-		System.out.println("There is no default constructor for Item.\n");
+		this.saleLineItems = new ArrayList<SaleLineItem>();
+		this.upcs = new TreeMap<String, UPC>();
+		this.prices = new TreeSet<Price>();
 	}
 
 	/**
@@ -138,7 +140,7 @@ public class Item {
 	 * @param date
 	 */
 	public Price getPriceForDate(LocalDate date) {
-		Price mostRecentPrice = null;
+		Price mostRecentPrice = this.getPrices().first(); // Initalize with a valid value
 		
 		for (Price price : this.prices)
 			if (price.compareTo(mostRecentPrice) > 0)

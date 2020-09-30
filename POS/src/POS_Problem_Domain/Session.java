@@ -74,8 +74,7 @@ public class Session {
 	 * Default Constructor
 	 */
 	public Session() {
-		// TODO - implement Session.Session
-		throw new UnsupportedOperationException();
+		this.sales = new ArrayList<Sale>();
 	}
 
 	/**
@@ -84,6 +83,7 @@ public class Session {
 	 * @param register
 	 */
 	public Session(Cashier cashier, Register register) {
+		this();
 		this.setCashier(cashier);
 		this.setRegister(register);
 		this.setStartDateTime(LocalDateTime.now());

@@ -62,8 +62,8 @@ public class Sale {
 	 * Default Constructor
 	 */
 	public Sale() {
-		// TODO - implement Sale.Sale
-		throw new UnsupportedOperationException();
+		this.payments = new ArrayList<Payment>();
+		this.saleLineItems = new ArrayList<SaleLineItem>();
 	}
 
 	/**
@@ -71,6 +71,7 @@ public class Sale {
 	 * @param taxFree
 	 */
 	public Sale(String taxFree) {
+		this();
 		this.setTaxFree(Boolean.parseBoolean(taxFree));
 	}
 

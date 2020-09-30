@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * The information regarding a set tax rate, including whether it is in effect or not.
  */
-public class TaxRate {
+public class TaxRate implements Comparable<TaxRate>{
 
 	/**
 	 * The value of the tax rate

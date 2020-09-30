@@ -60,8 +60,7 @@ public class Cashier {
 	 * Default Constructor
 	 */
 	public Cashier() {
-		// TODO - implement Cashier.Cashier
-		throw new UnsupportedOperationException();
+		this.sessions = new ArrayList<Session>();
 	}
 
 	/**
@@ -71,6 +70,7 @@ public class Cashier {
 	 * @param password
 	 */
 	public Cashier(String number, Person person, String password) {
+		this();
 		this.setNumber(number);
 		this.setPerson(person);
 		this.setPassword(password);

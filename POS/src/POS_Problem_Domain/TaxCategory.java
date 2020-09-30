@@ -26,6 +26,10 @@ public class TaxCategory {
 		this.taxCategory = taxCategory;
 	}
 
+	private TreeSet<TaxRate> getTaxRates(){
+		return this.taxRates;
+	}
+	
 	/**
 	 * Default Constructor
 	 */
@@ -47,9 +51,9 @@ public class TaxCategory {
 	 * @param date
 	 */
 	public BigDecimal getTaxRateForDate(LocalDate date) {
-		TaxRate mostRecentRate = null;
+		TaxRate mostRecentRate = this.getTaxRates().first();
 		
-		for (TaxRate rate : this.taxRates) {
+		for (TaxRate rate : this.getTaxRates()) {
 			if (rate.compareTo(mostRecentRate) > 0)
 				mostRecentRate = rate; // if rate is more recent than mostRecentRate
 		}
