@@ -287,7 +287,7 @@ public class Store {
 		for (Session session : this.getSessions())
 			sessionString += session.toString() + "\n";
 		
-		return this.getName() + "\n==========\nCashiers: \n" + cashierString + "==========\nRegisters: \n" + registerString + "==========\nItems: \n" + itemString + "\n==========\nSessions: \n" + sessionString + "\n==========\n";
+		return this.getName() + "\n==========\nCashiers: \n" + cashierString + "==========\nRegisters: \n" + registerString + "==========\nItems: \n" + itemString + "==========\nSessions: \n" + sessionString;
 	}
 
 }

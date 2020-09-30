@@ -186,7 +186,7 @@ public class Sale {
 		for (SaleLineItem saleItem : this.getSaleLineItems())
 			saleItemsString += saleItem.toString() + "\n";
 
-		return "Sale: Subtotal: $" + this.calcSubTotal() + " Tax: $" + this.calcTax() + " Total: " + this.calcTotal() + " Payment: $" + this.calcAmountTendered() + " Change: $" + this.calcChange() + "\n" + saleItemsString;
+		return "Sale: Subtotal: $" + this.calcSubTotal() + " Tax: $" + this.calcTax() + " Total: $" + this.calcTotal() + " Payment: $" + this.calcAmountTendered() + " Change: $" + this.calcChange() + "\n" + saleItemsString;
 	}
 
 
