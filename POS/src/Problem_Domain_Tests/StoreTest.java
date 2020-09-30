@@ -55,18 +55,20 @@ public class StoreTest {
 		Price price2 = new Price("3.30", "11-Aug-2020", item2);
 		Price price3 = new Price("1.80", "11-Aug-2020", item3);
 		
-		// Define Sale
+		// Define Sales
 		Sale sale1 = new Sale("False");
+		Sale sale2 = new Sale("False");
 		
 		// Define SaleLineItems and add to the Sale
 		SaleLineItem saleItem1 = new SaleLineItem(sale1, item1, "2");
-		sale1.addSaleLineItem(saleItem1);
 		SaleLineItem saleItem2 = new SaleLineItem(sale1, item3, "1");
-		sale1.addSaleLineItem(saleItem2);
-				
+		SaleLineItem saleItem3 = new SaleLineItem(sale2, item1, "5");
+		SaleLineItem saleItem4 = new SaleLineItem(sale2, item2, "2");
+		
 		// Define Session and add Sale
 		Session session1 = new Session(cashier2, register1);
-		session1.addSale(sale1);		
+		session1.addSale(sale1);	
+		session1.addSale(sale2);
 		
 		// Add everything to the Store
 		store.addCashier(cashier1);

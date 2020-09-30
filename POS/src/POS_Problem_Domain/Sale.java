@@ -120,7 +120,7 @@ public class Sale {
 	public BigDecimal calcSubTotal() {
 		BigDecimal subTotal = new BigDecimal(0);
 		for (SaleLineItem saleItem : this.getSaleLineItems())
-			subTotal.add(saleItem.calcSubTotal());
+			subTotal = subTotal.add(saleItem.calcSubTotal());
 		return subTotal;
 	}
 
@@ -130,7 +130,7 @@ public class Sale {
 	public BigDecimal calcTax() {
 		BigDecimal taxTotal = new BigDecimal(0);
 		for (SaleLineItem saleItem : this.getSaleLineItems())
-			taxTotal.add(saleItem.calcTax());
+			taxTotal = taxTotal.add(saleItem.calcTax());
 		return taxTotal;
 	}
 
@@ -173,7 +173,7 @@ public class Sale {
 	public BigDecimal calcAmountTendered() {
 		BigDecimal totalPaid = new BigDecimal(0);
 		for (Payment payment : this.getPayments())
-			totalPaid.add(payment.getAmountTendered());
+			totalPaid = totalPaid.add(payment.getAmountTendered());
 		return totalPaid;
 	}
 
@@ -186,7 +186,7 @@ public class Sale {
 		for (SaleLineItem saleItem : this.getSaleLineItems())
 			saleItemsString += saleItem.toString() + "\n";
 
-		return "Sale: Subtotal: " + this.calcSubTotal() + " Tax: " + this.calcTax() + " Total: " + this.calcTotal() + " Payment: " + this.calcAmountTendered() + " Change: " + this.calcChange() + "\n" + saleItemsString;
+		return "Sale: Subtotal: $" + this.calcSubTotal() + " Tax: $" + this.calcTax() + " Total: " + this.calcTotal() + " Payment: $" + this.calcAmountTendered() + " Change: $" + this.calcChange() + "\n" + saleItemsString;
 	}
 
 

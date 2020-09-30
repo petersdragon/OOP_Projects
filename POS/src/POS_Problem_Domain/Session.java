@@ -119,7 +119,7 @@ public class Session {
 	public BigDecimal getTotal() {
 		BigDecimal total = new BigDecimal(0);
 		for (Sale sale : this.getSales())
-			total.add(sale.calcTotal());
+			total = total.add(sale.calcTotal());
 		return total;
 	}
 	
