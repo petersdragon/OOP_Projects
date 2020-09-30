@@ -94,7 +94,7 @@ public class Price implements Comparable<Price>{
 	 * Format the relevant information regarding Price into a single string that can be printed to a display.
 	 */
 	public String toString() {
-		return this.getPrice().toString();
+		return "$" + this.getPrice().toString();
 	}
 
 }

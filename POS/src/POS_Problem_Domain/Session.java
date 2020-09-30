@@ -127,7 +127,12 @@ public class Session {
 	 * Format the relevant information regarding a single session into a single string to print to a display.
 	 */
 	public String toString() {
-		return "Session: Cashier: " + this.getCashier().getPerson().getName() + " Register: " + this.getRegister().getNumber() + " Date: " + LocalDateTime.now() + " Total: " + this.getTotal().toString() + "\n" + this.getSales().toString();
+		// Format Sale into a single string 
+		String salesString = "";
+		for (Sale sales : this.getSales())
+			salesString += sales.toString() + "\n";
+
+		return "Session: Cashier: " + this.getCashier().getPerson().getName() + " Register: " + this.getRegister().getNumber() + " Date: " + LocalDateTime.now() + " Total: $" + this.getTotal() + "\n" + salesString;
 	}
 
 

@@ -181,7 +181,12 @@ public class Sale {
 	 * Format the relevant information regarding a Sale into a single string that can be printed to a display
 	 */
 	public String toString() {
-		return "Sale: Subtotal: " + this.calcSubTotal() + " Tax: " + this.calcTax() + " Total: " + this.calcTotal() + " Payment: " + this.calcAmountTendered() + " Change: " + this.calcChange() + "\n" + this.getSaleLineItems();
+		// Format the SaleLineItems into a single string
+		String saleItemsString = "";
+		for (SaleLineItem saleItem : this.getSaleLineItems())
+			saleItemsString += saleItem.toString() + "\n";
+
+		return "Sale: Subtotal: " + this.calcSubTotal() + " Tax: " + this.calcTax() + " Total: " + this.calcTotal() + " Payment: " + this.calcAmountTendered() + " Change: " + this.calcChange() + "\n" + saleItemsString;
 	}
 
 

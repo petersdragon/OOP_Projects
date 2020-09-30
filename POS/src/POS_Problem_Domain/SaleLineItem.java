@@ -78,14 +78,14 @@ public class SaleLineItem {
 	 * Calculate the tax for the SaleLineItem from the subtotal
 	 */
 	public BigDecimal calcTax() {
-		return this.getItem().getTaxRateForDate(LocalDate.now()).multiply(new BigDecimal(this.getQuantity()));
+		return this.getItem().getTaxRateForDate(LocalDate.now()).getTaxRate().multiply(new BigDecimal(this.getQuantity()));
 	}
 
 	/**
 	 * Format the relevant information regarding a SaleLineItem into a single string that can be printed to a display.
 	 */
 	public String toString() {
-		return this.getItem().getNumber() + " " + this.getItem().getDescription() + " " + new Integer(this.getQuantity()).toString() + "@" + this.getItem().getPriceForDate(LocalDate.now()) + " " + this.getItem().getPriceForDate(LocalDate.now()).getEffectiveDate().toString() + this.calcSubTotal().toString();
+		return this.getItem().getNumber() + " " + this.getItem().getDescription() + " " + new Integer(this.getQuantity()).toString() + "@" + this.getItem().getPriceForDate(LocalDate.now()) + " " + this.getItem().getPriceForDate(LocalDate.now()).getEffectiveDate().toString() + " $" + this.calcSubTotal().toString();
 	}
 
 

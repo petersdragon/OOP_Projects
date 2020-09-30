@@ -158,7 +158,7 @@ public class Item {
 	 * Determine the tax rate for an item on a given date
 	 * @param date
 	 */
-	public BigDecimal getTaxRateForDate(LocalDate date) {
+	public TaxRate getTaxRateForDate(LocalDate date) {
 		return this.getTaxCategory().getTaxRateForDate(date);
 	}
 

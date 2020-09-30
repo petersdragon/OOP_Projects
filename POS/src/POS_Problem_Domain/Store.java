@@ -282,10 +282,12 @@ public class Store {
 		for (Item item : this.getItems().values())
 			itemString += item.toString() + "\n";
 
-		// Format Sessions into a single string (need to go to sessions and format the Sales as well)
+		// Format Sessions into a single string
+		String sessionString = "";
+		for (Session session : this.getSessions())
+			sessionString += session.toString() + "\n";
 		
-		return this.getName() + "\n==========\nCashiers: \n" + cashierString + "==========\nRegisters: \n" + registerString + "==========\nItems: \n" + itemString + "\n==========\nSessions" + this.getSessions().toString() + "\n==========\n";
+		return this.getName() + "\n==========\nCashiers: \n" + cashierString + "==========\nRegisters: \n" + registerString + "==========\nItems: \n" + itemString + "\n==========\nSessions: \n" + sessionString + "\n==========\n";
 	}
-
 
 }

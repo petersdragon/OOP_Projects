@@ -50,7 +50,7 @@ public class TaxCategory {
 	 * For a given date, return the valid tax rates
 	 * @param date
 	 */
-	public BigDecimal getTaxRateForDate(LocalDate date) {
+	public TaxRate getTaxRateForDate(LocalDate date) {
 		TaxRate mostRecentRate = this.getTaxRates().first();
 		
 		for (TaxRate rate : this.getTaxRates()) {
@@ -61,7 +61,7 @@ public class TaxCategory {
 			throw new NullPointerException(); // TODO - implement null error checking
 		
 		else
-			return mostRecentRate.getTaxRate();
+			return mostRecentRate;
 	}
 
 	/**
@@ -87,10 +87,10 @@ public class TaxCategory {
 		String ratesString = "";
 		
 		for(TaxRate rate : this.taxRates) {
-			ratesString += rate; // Add all the rates in the tax category to a single string.
+			ratesString += rate + " "; // Add all the rates in the tax category to a single string.
 		}
 		
-		return this.taxCategory + ": " + ratesString + " ";
+		return this.getCategory() + ": " + ratesString;
 	}
 
 

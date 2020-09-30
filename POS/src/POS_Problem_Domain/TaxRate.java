@@ -75,7 +75,7 @@ public class TaxRate implements Comparable<TaxRate>{
 	 * Format the relevant information about a tax rate into a single string which can be printed to a display
 	 */
 	public String toString() {
-		return this.taxRate + ", " + this.effectiveDate;
+		return "$" + this.getTaxRate() + ", " + this.effectiveDate;
 	}
 
 
