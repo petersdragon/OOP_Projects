@@ -266,8 +266,25 @@ public class Store {
 	/**
 	 * Format the relevant information regarding a store into a single string that can be printed to a display.
 	 */
-	public String toString() {		
-		return this.getName() + "\n==========\nCashiers\n==========\\n" + this.getCashiers().toString() + "\n==========\nRegisters\n==========\\n" + this.getRegisters().toString() + "\n==========\nItems\n==========\\n" + this.getItems().toString() + "\n==========\nSessions\n==========\\n" + this.getSessions().toString() + "\n==========\n";
+	public String toString() {
+		// Format Cashiers into a single string
+		String cashierString = "";
+		for (Cashier cashier : this.getCashiers().values())
+			cashierString += cashier.toString() + "\n";
+		
+		// Format Registers into a single string
+		String registerString = "";
+		for (Register register : this.getRegisters().values())
+			registerString += register.toString() + "\n";
+		
+		// Format Items into a single string
+		String itemString = "";
+		for (Item item : this.getItems().values())
+			itemString += item.toString() + "\n";
+
+		// Format Sessions into a single string (need to go to sessions and format the Sales as well)
+		
+		return this.getName() + "\n==========\nCashiers: \n" + cashierString + "==========\nRegisters: \n" + registerString + "==========\nItems: \n" + itemString + "\n==========\nSessions" + this.getSessions().toString() + "\n==========\n";
 	}
 
 

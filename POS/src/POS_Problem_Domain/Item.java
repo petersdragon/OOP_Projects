@@ -175,7 +175,12 @@ public class Item {
 	 * Format the relevant information regarding an Item into a single string that can be printed to a display
 	 */
 	public String toString() {
-		return this.getNumber() + " " + this.getDescription() + " Price: " + this.getPriceForDate(LocalDate.now()).toString() + " Tax Rate: " + this.getTaxRateForDate(LocalDate.now()) + " " + this.getUpcs().toString();
+		// Format UPCs for the item
+		String upcString = "";
+		for (UPC upc : this.getUpcs().values())
+			upcString += upc.toString() + " ";
+		
+		return this.getNumber() + " " + this.getDescription() + " Price: " + this.getPriceForDate(LocalDate.now()).toString() + " Tax Rate: " + this.getTaxRateForDate(LocalDate.now()) + " " + upcString;
 	}
 
 

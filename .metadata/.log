@@ -6482,3 +6482,2153 @@ Binding(CTRL+SHIFT+T,
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.jdt.core 4 4 2020-09-30 12:56:56.275
+!MESSAGE Exception occurred during compilation unit conversion:
+----------------------------------- SOURCE BEGIN -------------------------------------
+package POS_Problem_Domain;
+
+import java.util.*;
+
+/**
+ * The information regarding a store at a single location
+ */
+public class Store {
+
+	/**
+	 * The number of the store for a chain
+	 */
+	private String number;
+	/**
+	 * The name of the store chain
+	 */
+	private String name;
+	/**
+	 * The tax categories that the store deals with
+	 */
+	private TreeMap<String, TaxCategory> taxCategories;
+	/**
+	 * The items that are available for purchase in the store
+	 */
+	private TreeMap<String, Item> items;
+	/**
+	 * The cashiers who work at the store
+	 */
+	private TreeMap<String, Cashier> cashiers;
+	/**
+	 * The registers that are used in the store
+	 */
+	private TreeMap<String, Register> registers;
+	/**
+	 * The sale sessions that occur in the store
+	 */
+	private ArrayList<Session> sessions;
+	/**
+	 * The UPCs of the items in the store
+	 */
+	private TreeMap<String, UPC> upcs;
+
+	public String getNumber() {
+		return this.number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public TreeMap<String, TaxCategory> getTaxCategories() {
+		return this.taxCategories;
+	}
+
+	public void setTaxCategories(TreeMap<String, TaxCategory> taxCategories) {
+		this.taxCategories = taxCategories;
+	}
+
+	public TreeMap<String, Item> getItems() {
+		return this.items;
+	}
+
+	public void setItems(TreeMap<String, Item> items) {
+		this.items = items;
+	}
+
+	public TreeMap<String, Cashier> getCashiers() {
+		return this.cashiers;
+	}
+
+	public void setCashiers(TreeMap<String, Cashier> cashiers) {
+		this.cashiers = cashiers;
+	}
+
+	public TreeMap<String, Register> getRegisters() {
+		return this.registers;
+	}
+
+	public void setRegisters(TreeMap<String, Register> registers) {
+		this.registers = registers;
+	}
+
+	public ArrayList<Session> getSessions() {
+		return this.sessions;
+	}
+
+	public void setSessions(ArrayList<Session> sessions) {
+		this.sessions = sessions;
+	}
+
+	public TreeMap<String, UPC> getUpcs() {
+		return this.upcs;
+	}
+
+	public void setUpcs(TreeMap<String, UPC> upcs) {
+		this.upcs = upcs;
+	}
+
+	/**
+	 * Default Constructor
+	 */
+	public Store() {
+		this.taxCategories = new TreeMap<String, TaxCategory>();
+		this.items = new TreeMap<String, Item>();
+		this.cashiers = new TreeMap<String, Cashier>();
+		this.registers = new TreeMap<String, Register>();
+		this.sessions = new ArrayList<Session>();
+		this.upcs = new TreeMap<String, UPC>();
+	}
+
+	/**
+	 * Constructor initializes the store number and the name of the store
+	 * @param number
+	 * @param name
+	 */
+	public Store(String number, String name) {
+		this();
+		this.setNumber(number); // Set the store's number
+		this.setName(name); // Set the store's name
+	}
+
+	/**
+	 * Add an item to the shelf in the store
+	 * @param item
+	 */
+	public void addItem(Item item) {
+		this.items.put(item.getNumber(), item);
+	}
+
+	/**
+	 * Remove an item from the shelf in the store
+	 * @param item
+	 */
+	public void removeItem(Item item) {
+		this.items.remove(item.getNumber(), item);
+	}
+
+	/**
+	 * Add the UPC of an item in the store
+	 * @param upc
+	 */
+	public void addUPC(UPC upc) {
+		this.upcs.put(upc.getUpc(), upc);
+	}
+
+	/**
+	 * Remove the UPC of an item from the store
+	 * @param upc
+	 */
+	public void removeUPC(UPC upc) {
+		this.upcs.remove(upc.getUpc(), upc);
+	}
+
+	/**
+	 * Add a register to the store
+	 * @param register
+	 */
+	public void addRegister(Register register) {
+		this.registers.put(register.getNumber(), register);
+	}
+
+	/**
+	 * Remove a register from the store
+	 * @param register
+	 */
+	public void removeRegister(Register register) {
+		this.registers.remove(register.getNumber(), register);
+	}
+
+	/**
+	 * Add a new cashier to the store
+	 * @param cashier
+	 */
+	public void addCashier(Cashier cashier) {
+		this.cashiers.put(cashier.getNumber(), cashier);
+	}
+
+	/**
+	 * Remove a cashier from the store
+	 * @param cashier
+	 */
+	public void removeCashier(Cashier cashier) {
+		this.cashiers.remove(cashier.getNumber(), cashier);
+	}
+
+	/**
+	 * Add a tax category the store deals with
+	 * @param taxCategory
+	 */
+	public void addTaxCategory(TaxCategory taxCategory) {
+		this.taxCategories.put(taxCategory.getCategory(), taxCategory);
+	}
+
+	/**
+	 * Remove a tax category from the store
+	 * @param taxCategory
+	 */
+	public void removeTaxCategory(TaxCategory taxCategory) {
+		this.taxCategories.remove(taxCategory.getCategory(), taxCategory);
+	}
+
+	/**
+	 * Add a new session to the store
+	 * @param session
+	 */
+	public void addSession(Session session) {
+		this.sessions.add(session);
+	}
+
+	/**
+	 * Remove a session from the store
+	 * @param session
+	 */
+	public void removeSession(Session session) {
+		this.sessions.remove(session);
+	}
+
+	/**
+	 * Find a register based on its identifying number
+	 * @param number
+	 */
+	public Register findRegisterByNumber(String number) {		
+		return this.registers.get(number);
+	}
+
+	/**
+	 * Find an item in the store based on its UPC
+	 * @param upc
+	 */
+	public Item findItemByUPC(String upc) {
+		return this.items.get(upc);
+	}
+
+	/**
+	 * Find an item based on its identifying number
+	 * @param number
+	 */
+	public Item findItemByNumber(String number) {
+		return this.items.get(number);
+	}
+
+	/**
+	 * Find a cashier based on their employee number
+	 * @param number
+	 */
+	public Cashier findCashierByNumber(String number) {
+		return this.cashiers.get(number);
+	}
+
+	/**
+	 * Find a tax category based on its name
+	 * @param category
+	 */
+	public TaxCategory findTaxCategoryByName(String category) {
+		return this.taxCategories.get(category);
+	}
+
+	/**
+	 * Format the relevant information regarding a store into a single string that can be printed to a display.
+	 */
+	public String toString() {
+		// Format Cashiers into a single string
+		String cashierString = "";
+		for ()
+		// Format Registers into a single string
+		
+		// Format Items into a single string
+		
+		// Format Sessions into a single string (need to go to sessions and format the Sales as well)
+		
+		return this.getName() + "\n==========\nCashiers\n" + this.getCashiers().toString() + "\n==========\nRegisters" + this.getRegisters().toString() + "\n==========\nItems" + this.getItems().toString() + "\n==========\nSessions" + this.getSessions().toString() + "\n==========\n";
+	}
+
+
+}
+----------------------------------- SOURCE END -------------------------------------
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.InfixExpression.setOperator(InfixExpression.java:383)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1276)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2020)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToParenthesizedExpression(ASTConverter.java:3750)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1932)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1963)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToExpression(ASTConverter.java:3602)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2174)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2965)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:751)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3302)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:450)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1138)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:802)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1315)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2020-09-30 12:56:56.282
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.InfixExpression.setOperator(InfixExpression.java:383)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1276)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2020)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToParenthesizedExpression(ASTConverter.java:3750)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1932)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1963)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToExpression(ASTConverter.java:3602)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2174)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2965)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:751)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3302)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:450)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1138)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:802)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1315)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 0 2020-09-30 12:56:56.284
+!MESSAGE Error in JDT Core during reconcile
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.InfixExpression.setOperator(InfixExpression.java:383)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1276)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2020)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToParenthesizedExpression(ASTConverter.java:3750)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1932)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1963)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToExpression(ASTConverter.java:3602)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2174)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2965)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:751)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3302)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:450)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1138)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:802)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1315)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.core 4 4 2020-09-30 12:56:56.300
+!MESSAGE Exception occurred during compilation unit conversion:
+----------------------------------- SOURCE BEGIN -------------------------------------
+package POS_Problem_Domain;
+
+import java.util.*;
+
+/**
+ * The information regarding a store at a single location
+ */
+public class Store {
+
+	/**
+	 * The number of the store for a chain
+	 */
+	private String number;
+	/**
+	 * The name of the store chain
+	 */
+	private String name;
+	/**
+	 * The tax categories that the store deals with
+	 */
+	private TreeMap<String, TaxCategory> taxCategories;
+	/**
+	 * The items that are available for purchase in the store
+	 */
+	private TreeMap<String, Item> items;
+	/**
+	 * The cashiers who work at the store
+	 */
+	private TreeMap<String, Cashier> cashiers;
+	/**
+	 * The registers that are used in the store
+	 */
+	private TreeMap<String, Register> registers;
+	/**
+	 * The sale sessions that occur in the store
+	 */
+	private ArrayList<Session> sessions;
+	/**
+	 * The UPCs of the items in the store
+	 */
+	private TreeMap<String, UPC> upcs;
+
+	public String getNumber() {
+		return this.number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public TreeMap<String, TaxCategory> getTaxCategories() {
+		return this.taxCategories;
+	}
+
+	public void setTaxCategories(TreeMap<String, TaxCategory> taxCategories) {
+		this.taxCategories = taxCategories;
+	}
+
+	public TreeMap<String, Item> getItems() {
+		return this.items;
+	}
+
+	public void setItems(TreeMap<String, Item> items) {
+		this.items = items;
+	}
+
+	public TreeMap<String, Cashier> getCashiers() {
+		return this.cashiers;
+	}
+
+	public void setCashiers(TreeMap<String, Cashier> cashiers) {
+		this.cashiers = cashiers;
+	}
+
+	public TreeMap<String, Register> getRegisters() {
+		return this.registers;
+	}
+
+	public void setRegisters(TreeMap<String, Register> registers) {
+		this.registers = registers;
+	}
+
+	public ArrayList<Session> getSessions() {
+		return this.sessions;
+	}
+
+	public void setSessions(ArrayList<Session> sessions) {
+		this.sessions = sessions;
+	}
+
+	public TreeMap<String, UPC> getUpcs() {
+		return this.upcs;
+	}
+
+	public void setUpcs(TreeMap<String, UPC> upcs) {
+		this.upcs = upcs;
+	}
+
+	/**
+	 * Default Constructor
+	 */
+	public Store() {
+		this.taxCategories = new TreeMap<String, TaxCategory>();
+		this.items = new TreeMap<String, Item>();
+		this.cashiers = new TreeMap<String, Cashier>();
+		this.registers = new TreeMap<String, Register>();
+		this.sessions = new ArrayList<Session>();
+		this.upcs = new TreeMap<String, UPC>();
+	}
+
+	/**
+	 * Constructor initializes the store number and the name of the store
+	 * @param number
+	 * @param name
+	 */
+	public Store(String number, String name) {
+		this();
+		this.setNumber(number); // Set the store's number
+		this.setName(name); // Set the store's name
+	}
+
+	/**
+	 * Add an item to the shelf in the store
+	 * @param item
+	 */
+	public void addItem(Item item) {
+		this.items.put(item.getNumber(), item);
+	}
+
+	/**
+	 * Remove an item from the shelf in the store
+	 * @param item
+	 */
+	public void removeItem(Item item) {
+		this.items.remove(item.getNumber(), item);
+	}
+
+	/**
+	 * Add the UPC of an item in the store
+	 * @param upc
+	 */
+	public void addUPC(UPC upc) {
+		this.upcs.put(upc.getUpc(), upc);
+	}
+
+	/**
+	 * Remove the UPC of an item from the store
+	 * @param upc
+	 */
+	public void removeUPC(UPC upc) {
+		this.upcs.remove(upc.getUpc(), upc);
+	}
+
+	/**
+	 * Add a register to the store
+	 * @param register
+	 */
+	public void addRegister(Register register) {
+		this.registers.put(register.getNumber(), register);
+	}
+
+	/**
+	 * Remove a register from the store
+	 * @param register
+	 */
+	public void removeRegister(Register register) {
+		this.registers.remove(register.getNumber(), register);
+	}
+
+	/**
+	 * Add a new cashier to the store
+	 * @param cashier
+	 */
+	public void addCashier(Cashier cashier) {
+		this.cashiers.put(cashier.getNumber(), cashier);
+	}
+
+	/**
+	 * Remove a cashier from the store
+	 * @param cashier
+	 */
+	public void removeCashier(Cashier cashier) {
+		this.cashiers.remove(cashier.getNumber(), cashier);
+	}
+
+	/**
+	 * Add a tax category the store deals with
+	 * @param taxCategory
+	 */
+	public void addTaxCategory(TaxCategory taxCategory) {
+		this.taxCategories.put(taxCategory.getCategory(), taxCategory);
+	}
+
+	/**
+	 * Remove a tax category from the store
+	 * @param taxCategory
+	 */
+	public void removeTaxCategory(TaxCategory taxCategory) {
+		this.taxCategories.remove(taxCategory.getCategory(), taxCategory);
+	}
+
+	/**
+	 * Add a new session to the store
+	 * @param session
+	 */
+	public void addSession(Session session) {
+		this.sessions.add(session);
+	}
+
+	/**
+	 * Remove a session from the store
+	 * @param session
+	 */
+	public void removeSession(Session session) {
+		this.sessions.remove(session);
+	}
+
+	/**
+	 * Find a register based on its identifying number
+	 * @param number
+	 */
+	public Register findRegisterByNumber(String number) {		
+		return this.registers.get(number);
+	}
+
+	/**
+	 * Find an item in the store based on its UPC
+	 * @param upc
+	 */
+	public Item findItemByUPC(String upc) {
+		return this.items.get(upc);
+	}
+
+	/**
+	 * Find an item based on its identifying number
+	 * @param number
+	 */
+	public Item findItemByNumber(String number) {
+		return this.items.get(number);
+	}
+
+	/**
+	 * Find a cashier based on their employee number
+	 * @param number
+	 */
+	public Cashier findCashierByNumber(String number) {
+		return this.cashiers.get(number);
+	}
+
+	/**
+	 * Find a tax category based on its name
+	 * @param category
+	 */
+	public TaxCategory findTaxCategoryByName(String category) {
+		return this.taxCategories.get(category);
+	}
+
+	/**
+	 * Format the relevant information regarding a store into a single string that can be printed to a display.
+	 */
+	public String toString() {
+		// Format Cashiers into a single string
+		String cashierString = "";
+		for ()
+		// Format Registers into a single string
+		
+		// Format Items into a single string
+		
+		// Format Sessions into a single string (need to go to sessions and format the Sales as well)
+		
+		return this.getName() + "\n==========\nCashiers\n" + this.getCashiers().toString() + "\n==========\nRegisters" + this.getRegisters().toString() + "\n==========\nItems" + this.getItems().toString() + "\n==========\nSessions" + this.getSessions().toString() + "\n==========\n";
+	}
+
+
+}
+----------------------------------- SOURCE END -------------------------------------
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.InfixExpression.setOperator(InfixExpression.java:383)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1276)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2020)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToParenthesizedExpression(ASTConverter.java:3750)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1932)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1963)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToExpression(ASTConverter.java:3602)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2174)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2965)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:751)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3302)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.CompilationUnitResolver.convert(CompilationUnitResolver.java:323)
+	at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1231)
+	at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:820)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider$1.run(CoreASTProvider.java:271)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider.createAST(CoreASTProvider.java:263)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider.getAST(CoreASTProvider.java:196)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider.getAST(CoreASTProvider.java:186)
+	at org.eclipse.jdt.core.manipulation.SharedASTProviderCore.getAST(SharedASTProviderCore.java:138)
+	at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup.calculateASTandInform(SelectionListenerWithASTManager.java:175)
+	at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup$3.run(SelectionListenerWithASTManager.java:160)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jdt.core.manipulation 4 2 2020-09-30 12:56:56.303
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.core.manipulation".
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.InfixExpression.setOperator(InfixExpression.java:383)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1276)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2020)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToParenthesizedExpression(ASTConverter.java:3750)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1932)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1963)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToExpression(ASTConverter.java:3602)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2174)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2965)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:751)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3302)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.CompilationUnitResolver.convert(CompilationUnitResolver.java:323)
+	at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1231)
+	at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:820)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider$1.run(CoreASTProvider.java:271)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider.createAST(CoreASTProvider.java:263)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider.getAST(CoreASTProvider.java:196)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider.getAST(CoreASTProvider.java:186)
+	at org.eclipse.jdt.core.manipulation.SharedASTProviderCore.getAST(SharedASTProviderCore.java:138)
+	at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup.calculateASTandInform(SelectionListenerWithASTManager.java:175)
+	at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup$3.run(SelectionListenerWithASTManager.java:160)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jdt.core.manipulation 4 0 2020-09-30 12:56:56.304
+!MESSAGE Error in JDT Core during AST creation
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.InfixExpression.setOperator(InfixExpression.java:383)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1276)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2020)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToParenthesizedExpression(ASTConverter.java:3750)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1932)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1963)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToExpression(ASTConverter.java:3602)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2174)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2965)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:751)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3302)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.CompilationUnitResolver.convert(CompilationUnitResolver.java:323)
+	at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1231)
+	at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:820)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider$1.run(CoreASTProvider.java:271)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider.createAST(CoreASTProvider.java:263)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider.getAST(CoreASTProvider.java:196)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider.getAST(CoreASTProvider.java:186)
+	at org.eclipse.jdt.core.manipulation.SharedASTProviderCore.getAST(SharedASTProviderCore.java:138)
+	at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup.calculateASTandInform(SelectionListenerWithASTManager.java:175)
+	at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup$3.run(SelectionListenerWithASTManager.java:160)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jdt.core 4 4 2020-09-30 13:04:20.368
+!MESSAGE Exception occurred during compilation unit conversion:
+----------------------------------- SOURCE BEGIN -------------------------------------
+package POS_Problem_Domain;
+
+import java.util.*;
+
+/**
+ * The information regarding a store at a single location
+ */
+public class Store {
+
+	/**
+	 * The number of the store for a chain
+	 */
+	private String number;
+	/**
+	 * The name of the store chain
+	 */
+	private String name;
+	/**
+	 * The tax categories that the store deals with
+	 */
+	private TreeMap<String, TaxCategory> taxCategories;
+	/**
+	 * The items that are available for purchase in the store
+	 */
+	private TreeMap<String, Item> items;
+	/**
+	 * The cashiers who work at the store
+	 */
+	private TreeMap<String, Cashier> cashiers;
+	/**
+	 * The registers that are used in the store
+	 */
+	private TreeMap<String, Register> registers;
+	/**
+	 * The sale sessions that occur in the store
+	 */
+	private ArrayList<Session> sessions;
+	/**
+	 * The UPCs of the items in the store
+	 */
+	private TreeMap<String, UPC> upcs;
+
+	public String getNumber() {
+		return this.number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public TreeMap<String, TaxCategory> getTaxCategories() {
+		return this.taxCategories;
+	}
+
+	public void setTaxCategories(TreeMap<String, TaxCategory> taxCategories) {
+		this.taxCategories = taxCategories;
+	}
+
+	public TreeMap<String, Item> getItems() {
+		return this.items;
+	}
+
+	public void setItems(TreeMap<String, Item> items) {
+		this.items = items;
+	}
+
+	public TreeMap<String, Cashier> getCashiers() {
+		return this.cashiers;
+	}
+
+	public void setCashiers(TreeMap<String, Cashier> cashiers) {
+		this.cashiers = cashiers;
+	}
+
+	public TreeMap<String, Register> getRegisters() {
+		return this.registers;
+	}
+
+	public void setRegisters(TreeMap<String, Register> registers) {
+		this.registers = registers;
+	}
+
+	public ArrayList<Session> getSessions() {
+		return this.sessions;
+	}
+
+	public void setSessions(ArrayList<Session> sessions) {
+		this.sessions = sessions;
+	}
+
+	public TreeMap<String, UPC> getUpcs() {
+		return this.upcs;
+	}
+
+	public void setUpcs(TreeMap<String, UPC> upcs) {
+		this.upcs = upcs;
+	}
+
+	/**
+	 * Default Constructor
+	 */
+	public Store() {
+		this.taxCategories = new TreeMap<String, TaxCategory>();
+		this.items = new TreeMap<String, Item>();
+		this.cashiers = new TreeMap<String, Cashier>();
+		this.registers = new TreeMap<String, Register>();
+		this.sessions = new ArrayList<Session>();
+		this.upcs = new TreeMap<String, UPC>();
+	}
+
+	/**
+	 * Constructor initializes the store number and the name of the store
+	 * @param number
+	 * @param name
+	 */
+	public Store(String number, String name) {
+		this();
+		this.setNumber(number); // Set the store's number
+		this.setName(name); // Set the store's name
+	}
+
+	/**
+	 * Add an item to the shelf in the store
+	 * @param item
+	 */
+	public void addItem(Item item) {
+		this.items.put(item.getNumber(), item);
+	}
+
+	/**
+	 * Remove an item from the shelf in the store
+	 * @param item
+	 */
+	public void removeItem(Item item) {
+		this.items.remove(item.getNumber(), item);
+	}
+
+	/**
+	 * Add the UPC of an item in the store
+	 * @param upc
+	 */
+	public void addUPC(UPC upc) {
+		this.upcs.put(upc.getUpc(), upc);
+	}
+
+	/**
+	 * Remove the UPC of an item from the store
+	 * @param upc
+	 */
+	public void removeUPC(UPC upc) {
+		this.upcs.remove(upc.getUpc(), upc);
+	}
+
+	/**
+	 * Add a register to the store
+	 * @param register
+	 */
+	public void addRegister(Register register) {
+		this.registers.put(register.getNumber(), register);
+	}
+
+	/**
+	 * Remove a register from the store
+	 * @param register
+	 */
+	public void removeRegister(Register register) {
+		this.registers.remove(register.getNumber(), register);
+	}
+
+	/**
+	 * Add a new cashier to the store
+	 * @param cashier
+	 */
+	public void addCashier(Cashier cashier) {
+		this.cashiers.put(cashier.getNumber(), cashier);
+	}
+
+	/**
+	 * Remove a cashier from the store
+	 * @param cashier
+	 */
+	public void removeCashier(Cashier cashier) {
+		this.cashiers.remove(cashier.getNumber(), cashier);
+	}
+
+	/**
+	 * Add a tax category the store deals with
+	 * @param taxCategory
+	 */
+	public void addTaxCategory(TaxCategory taxCategory) {
+		this.taxCategories.put(taxCategory.getCategory(), taxCategory);
+	}
+
+	/**
+	 * Remove a tax category from the store
+	 * @param taxCategory
+	 */
+	public void removeTaxCategory(TaxCategory taxCategory) {
+		this.taxCategories.remove(taxCategory.getCategory(), taxCategory);
+	}
+
+	/**
+	 * Add a new session to the store
+	 * @param session
+	 */
+	public void addSession(Session session) {
+		this.sessions.add(session);
+	}
+
+	/**
+	 * Remove a session from the store
+	 * @param session
+	 */
+	public void removeSession(Session session) {
+		this.sessions.remove(session);
+	}
+
+	/**
+	 * Find a register based on its identifying number
+	 * @param number
+	 */
+	public Register findRegisterByNumber(String number) {		
+		return this.registers.get(number);
+	}
+
+	/**
+	 * Find an item in the store based on its UPC
+	 * @param upc
+	 */
+	public Item findItemByUPC(String upc) {
+		return this.items.get(upc);
+	}
+
+	/**
+	 * Find an item based on its identifying number
+	 * @param number
+	 */
+	public Item findItemByNumber(String number) {
+		return this.items.get(number);
+	}
+
+	/**
+	 * Find a cashier based on their employee number
+	 * @param number
+	 */
+	public Cashier findCashierByNumber(String number) {
+		return this.cashiers.get(number);
+	}
+
+	/**
+	 * Find a tax category based on its name
+	 * @param category
+	 */
+	public TaxCategory findTaxCategoryByName(String category) {
+		return this.taxCategories.get(category);
+	}
+
+	/**
+	 * Format the relevant information regarding a store into a single string that can be printed to a display.
+	 */
+	public String toString() {
+		// Format Cashiers into a single string
+		String cashierString = "";
+		for (Cashier cashier : this.getCashiers().values())
+			cashierString += cashier.toString() + "\n";
+		
+		// Format Registers into a single string
+		String registerString = "";
+		for (Register register : this.getRegisters().values())
+			registerString += register.toString() + "\n";
+		
+		// Format Items into a single string
+		String itemString = "";
+		for ()
+		// Format Sessions into a single string (need to go to sessions and format the Sales as well)
+		
+		return this.getName() + "\n==========\nCashiers: \n" + cashierString + "==========\nRegisters: \n" + registerString + "==========\nItems" + this.getItems().toString() + "\n==========\nSessions" + this.getSessions().toString() + "\n==========\n";
+	}
+
+
+}
+----------------------------------- SOURCE END -------------------------------------
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.InfixExpression.setOperator(InfixExpression.java:383)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1276)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2020)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToParenthesizedExpression(ASTConverter.java:3750)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1932)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1963)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToExpression(ASTConverter.java:3602)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2174)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2965)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:751)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3302)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:450)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1138)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:802)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1315)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2020-09-30 13:04:20.371
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.InfixExpression.setOperator(InfixExpression.java:383)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1276)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2020)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToParenthesizedExpression(ASTConverter.java:3750)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1932)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1963)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToExpression(ASTConverter.java:3602)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2174)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2965)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:751)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3302)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:450)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1138)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:802)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1315)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 0 2020-09-30 13:04:20.373
+!MESSAGE Error in JDT Core during reconcile
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.InfixExpression.setOperator(InfixExpression.java:383)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1276)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2020)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToParenthesizedExpression(ASTConverter.java:3750)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1932)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1963)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToExpression(ASTConverter.java:3602)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2174)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2965)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:751)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3302)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:450)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1138)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:802)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1315)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.core 4 4 2020-09-30 13:04:20.456
+!MESSAGE Exception occurred during compilation unit conversion:
+----------------------------------- SOURCE BEGIN -------------------------------------
+package POS_Problem_Domain;
+
+import java.util.*;
+
+/**
+ * The information regarding a store at a single location
+ */
+public class Store {
+
+	/**
+	 * The number of the store for a chain
+	 */
+	private String number;
+	/**
+	 * The name of the store chain
+	 */
+	private String name;
+	/**
+	 * The tax categories that the store deals with
+	 */
+	private TreeMap<String, TaxCategory> taxCategories;
+	/**
+	 * The items that are available for purchase in the store
+	 */
+	private TreeMap<String, Item> items;
+	/**
+	 * The cashiers who work at the store
+	 */
+	private TreeMap<String, Cashier> cashiers;
+	/**
+	 * The registers that are used in the store
+	 */
+	private TreeMap<String, Register> registers;
+	/**
+	 * The sale sessions that occur in the store
+	 */
+	private ArrayList<Session> sessions;
+	/**
+	 * The UPCs of the items in the store
+	 */
+	private TreeMap<String, UPC> upcs;
+
+	public String getNumber() {
+		return this.number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public TreeMap<String, TaxCategory> getTaxCategories() {
+		return this.taxCategories;
+	}
+
+	public void setTaxCategories(TreeMap<String, TaxCategory> taxCategories) {
+		this.taxCategories = taxCategories;
+	}
+
+	public TreeMap<String, Item> getItems() {
+		return this.items;
+	}
+
+	public void setItems(TreeMap<String, Item> items) {
+		this.items = items;
+	}
+
+	public TreeMap<String, Cashier> getCashiers() {
+		return this.cashiers;
+	}
+
+	public void setCashiers(TreeMap<String, Cashier> cashiers) {
+		this.cashiers = cashiers;
+	}
+
+	public TreeMap<String, Register> getRegisters() {
+		return this.registers;
+	}
+
+	public void setRegisters(TreeMap<String, Register> registers) {
+		this.registers = registers;
+	}
+
+	public ArrayList<Session> getSessions() {
+		return this.sessions;
+	}
+
+	public void setSessions(ArrayList<Session> sessions) {
+		this.sessions = sessions;
+	}
+
+	public TreeMap<String, UPC> getUpcs() {
+		return this.upcs;
+	}
+
+	public void setUpcs(TreeMap<String, UPC> upcs) {
+		this.upcs = upcs;
+	}
+
+	/**
+	 * Default Constructor
+	 */
+	public Store() {
+		this.taxCategories = new TreeMap<String, TaxCategory>();
+		this.items = new TreeMap<String, Item>();
+		this.cashiers = new TreeMap<String, Cashier>();
+		this.registers = new TreeMap<String, Register>();
+		this.sessions = new ArrayList<Session>();
+		this.upcs = new TreeMap<String, UPC>();
+	}
+
+	/**
+	 * Constructor initializes the store number and the name of the store
+	 * @param number
+	 * @param name
+	 */
+	public Store(String number, String name) {
+		this();
+		this.setNumber(number); // Set the store's number
+		this.setName(name); // Set the store's name
+	}
+
+	/**
+	 * Add an item to the shelf in the store
+	 * @param item
+	 */
+	public void addItem(Item item) {
+		this.items.put(item.getNumber(), item);
+	}
+
+	/**
+	 * Remove an item from the shelf in the store
+	 * @param item
+	 */
+	public void removeItem(Item item) {
+		this.items.remove(item.getNumber(), item);
+	}
+
+	/**
+	 * Add the UPC of an item in the store
+	 * @param upc
+	 */
+	public void addUPC(UPC upc) {
+		this.upcs.put(upc.getUpc(), upc);
+	}
+
+	/**
+	 * Remove the UPC of an item from the store
+	 * @param upc
+	 */
+	public void removeUPC(UPC upc) {
+		this.upcs.remove(upc.getUpc(), upc);
+	}
+
+	/**
+	 * Add a register to the store
+	 * @param register
+	 */
+	public void addRegister(Register register) {
+		this.registers.put(register.getNumber(), register);
+	}
+
+	/**
+	 * Remove a register from the store
+	 * @param register
+	 */
+	public void removeRegister(Register register) {
+		this.registers.remove(register.getNumber(), register);
+	}
+
+	/**
+	 * Add a new cashier to the store
+	 * @param cashier
+	 */
+	public void addCashier(Cashier cashier) {
+		this.cashiers.put(cashier.getNumber(), cashier);
+	}
+
+	/**
+	 * Remove a cashier from the store
+	 * @param cashier
+	 */
+	public void removeCashier(Cashier cashier) {
+		this.cashiers.remove(cashier.getNumber(), cashier);
+	}
+
+	/**
+	 * Add a tax category the store deals with
+	 * @param taxCategory
+	 */
+	public void addTaxCategory(TaxCategory taxCategory) {
+		this.taxCategories.put(taxCategory.getCategory(), taxCategory);
+	}
+
+	/**
+	 * Remove a tax category from the store
+	 * @param taxCategory
+	 */
+	public void removeTaxCategory(TaxCategory taxCategory) {
+		this.taxCategories.remove(taxCategory.getCategory(), taxCategory);
+	}
+
+	/**
+	 * Add a new session to the store
+	 * @param session
+	 */
+	public void addSession(Session session) {
+		this.sessions.add(session);
+	}
+
+	/**
+	 * Remove a session from the store
+	 * @param session
+	 */
+	public void removeSession(Session session) {
+		this.sessions.remove(session);
+	}
+
+	/**
+	 * Find a register based on its identifying number
+	 * @param number
+	 */
+	public Register findRegisterByNumber(String number) {		
+		return this.registers.get(number);
+	}
+
+	/**
+	 * Find an item in the store based on its UPC
+	 * @param upc
+	 */
+	public Item findItemByUPC(String upc) {
+		return this.items.get(upc);
+	}
+
+	/**
+	 * Find an item based on its identifying number
+	 * @param number
+	 */
+	public Item findItemByNumber(String number) {
+		return this.items.get(number);
+	}
+
+	/**
+	 * Find a cashier based on their employee number
+	 * @param number
+	 */
+	public Cashier findCashierByNumber(String number) {
+		return this.cashiers.get(number);
+	}
+
+	/**
+	 * Find a tax category based on its name
+	 * @param category
+	 */
+	public TaxCategory findTaxCategoryByName(String category) {
+		return this.taxCategories.get(category);
+	}
+
+	/**
+	 * Format the relevant information regarding a store into a single string that can be printed to a display.
+	 */
+	public String toString() {
+		// Format Cashiers into a single string
+		String cashierString = "";
+		for (Cashier cashier : this.getCashiers().values())
+			cashierString += cashier.toString() + "\n";
+		
+		// Format Registers into a single string
+		String registerString = "";
+		for (Register register : this.getRegisters().values())
+			registerString += register.toString() + "\n";
+		
+		// Format Items into a single string
+		String itemString = "";
+		for ()
+		// Format Sessions into a single string (need to go to sessions and format the Sales as well)
+		
+		return this.getName() + "\n==========\nCashiers: \n" + cashierString + "==========\nRegisters: \n" + registerString + "==========\nItems" + this.getItems().toString() + "\n==========\nSessions" + this.getSessions().toString() + "\n==========\n";
+	}
+
+
+}
+----------------------------------- SOURCE END -------------------------------------
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.InfixExpression.setOperator(InfixExpression.java:383)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1276)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2020)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToParenthesizedExpression(ASTConverter.java:3750)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1932)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1963)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToExpression(ASTConverter.java:3602)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2174)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2965)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:751)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3302)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.CompilationUnitResolver.convert(CompilationUnitResolver.java:323)
+	at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1231)
+	at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:820)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider$1.run(CoreASTProvider.java:271)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider.createAST(CoreASTProvider.java:263)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider.getAST(CoreASTProvider.java:196)
+	at org.eclipse.jdt.core.manipulation.SharedASTProviderCore.getAST(SharedASTProviderCore.java:138)
+	at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup.calculateASTandInform(SelectionListenerWithASTManager.java:175)
+	at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup$3.run(SelectionListenerWithASTManager.java:160)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jdt.core.manipulation 4 2 2020-09-30 13:04:20.459
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.core.manipulation".
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.InfixExpression.setOperator(InfixExpression.java:383)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1276)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2020)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToParenthesizedExpression(ASTConverter.java:3750)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1932)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1963)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToExpression(ASTConverter.java:3602)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2174)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2965)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:751)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3302)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.CompilationUnitResolver.convert(CompilationUnitResolver.java:323)
+	at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1231)
+	at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:820)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider$1.run(CoreASTProvider.java:271)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider.createAST(CoreASTProvider.java:263)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider.getAST(CoreASTProvider.java:196)
+	at org.eclipse.jdt.core.manipulation.SharedASTProviderCore.getAST(SharedASTProviderCore.java:138)
+	at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup.calculateASTandInform(SelectionListenerWithASTManager.java:175)
+	at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup$3.run(SelectionListenerWithASTManager.java:160)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jdt.core.manipulation 4 0 2020-09-30 13:04:20.461
+!MESSAGE Error in JDT Core during AST creation
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.InfixExpression.setOperator(InfixExpression.java:383)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1276)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2020)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToParenthesizedExpression(ASTConverter.java:3750)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1932)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1963)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToExpression(ASTConverter.java:3602)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2174)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2965)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:751)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3302)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.CompilationUnitResolver.convert(CompilationUnitResolver.java:323)
+	at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1231)
+	at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:820)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider$1.run(CoreASTProvider.java:271)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider.createAST(CoreASTProvider.java:263)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider.getAST(CoreASTProvider.java:196)
+	at org.eclipse.jdt.core.manipulation.SharedASTProviderCore.getAST(SharedASTProviderCore.java:138)
+	at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup.calculateASTandInform(SelectionListenerWithASTManager.java:175)
+	at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup$3.run(SelectionListenerWithASTManager.java:160)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jdt.core 4 4 2020-09-30 13:06:03.459
+!MESSAGE Exception occurred during compilation unit conversion:
+----------------------------------- SOURCE BEGIN -------------------------------------
+package POS_Problem_Domain;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.*;
+
+/**
+ * Information regarding a given item for sale in the store
+ */
+public class Item {
+
+	/**
+	 * The identification number of the item available on the shelf
+	 */
+	private String number;
+	/**
+	 * A description providing information about the item available for sale.
+	 */
+	private String description;
+	/**
+	 * Information about the item selected for sale
+	 */
+	private ArrayList<SaleLineItem> saleLineItems;
+	/**
+	 * Universal Product Codes for the item
+	 */
+	private TreeMap<String, UPC> upcs;
+	/**
+	 * The different prices for the item. This is dependent on date, such as when there is a sale price in effect for a short time.
+	 */
+	private TreeSet<Price> prices;
+	/**
+	 * The tax category of the item being sold
+	 */
+	private TaxCategory taxCategory;
+
+	public String getNumber() {
+		return this.number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
+
+	public String getDescription() {
+		return this.description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public ArrayList<SaleLineItem> getSaleLineItems() {
+		return this.saleLineItems;
+	}
+
+	public void setSaleLineItems(ArrayList<SaleLineItem> saleLineItems) {
+		this.saleLineItems = saleLineItems;
+	}
+
+	public TreeMap<String, UPC> getUpcs() {
+		return this.upcs;
+	}
+
+	public void setUpcs(TreeMap<String, UPC> upcs) {
+		this.upcs = upcs;
+	}
+
+	public TreeSet<Price> getPrices() {
+		return this.prices;
+	}
+
+	public void setPrices(TreeSet<Price> prices) {
+		this.prices = prices;
+	}
+
+	public TaxCategory getTaxCategory() {
+		return this.taxCategory;
+	}
+
+	public void setTaxCategory(TaxCategory taxCategory) {
+		this.taxCategory = taxCategory;
+	}
+
+	/**
+	 * Default Constructor
+	 */
+	public Item() {
+		//Add UPC to Item?
+		this.saleLineItems = new ArrayList<SaleLineItem>();
+		this.upcs = new TreeMap<String, UPC>();
+		this.prices = new TreeSet<Price>();
+	}
+
+	/**
+	 * Constructor initializes the number of the item on the shelf and a description for that item
+	 * @param number
+	 * @param description
+	 */
+	public Item(String number, String description) {
+		this(); // Call default constructor
+		this.setNumber(number);
+		this.setDescription(description);
+	}
+
+	/**
+	 * Add a regular or sale price to the item
+	 * @param price
+	 */
+	public void addPrice(Price price) {
+		this.prices.add(price);
+	}
+
+	/**
+	 * Remove a regular or sale price from the item
+	 * @param price
+	 */
+	public void removePrice(Price price) {
+		this.prices.remove(price);
+	}
+
+	/**
+	 * Add a valid UPC to the item
+	 * @param upc
+	 */
+	public void addUPC(UPC upc) {
+		this.upcs.put(upc.getUpc(), upc);
+	}
+
+	/**
+	 * Remove a UPC from the item
+	 * @param upc
+	 */
+	public void removeUPC(UPC upc) {
+		this.upcs.remove(upc.getUpc(), upc);
+	}
+
+	/**
+	 * Determine the most recent price of the item for a given date
+	 * @param date
+	 */
+	public Price getPriceForDate(LocalDate date) {
+		Price mostRecentPrice = this.getPrices().first(); // Initalize with a valid value
+		
+		for (Price price : this.prices)
+			if (price.compareTo(mostRecentPrice) > 0)
+				mostRecentPrice = price; // if price is more recent than mostRecentPrice
+
+		if (mostRecentPrice == null)
+			// TODO - implement null error checking
+			throw new NullPointerException();
+		
+		else
+			return mostRecentPrice;
+	}
+
+	/**
+	 * Determine the tax rate for an item on a given date
+	 * @param date
+	 */
+	public BigDecimal getTaxRateForDate(LocalDate date) {
+		return this.getTaxCategory().getTaxRateForDate(date);
+	}
+
+	/**
+	 * Determine the total cost of the item multiplied by the quantity being sold for a given date
+	 * @param date
+	 * @param quantity
+	 */
+	public BigDecimal calcAmountForDateQty(LocalDate date, int quantity) {
+		return this.getPriceForDate(date).calcAmountForQty(quantity);
+	}
+
+	/**
+	 * Format the relevant information regarding an Item into a single string that can be printed to a display
+	 */
+	public String toString() {
+		// Format UPCs for the item
+		String upcString = "";
+		for ()
+		return this.getNumber() + " " + this.getDescription() + " Price: " + this.getPriceForDate(LocalDate.now()).toString() + " Tax Rate: " + this.getTaxRateForDate(LocalDate.now()) + " " + this.getUpcs().toString();
+	}
+
+
+}
+----------------------------------- SOURCE END -------------------------------------
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.InfixExpression.setOperator(InfixExpression.java:383)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1276)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2020)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToParenthesizedExpression(ASTConverter.java:3750)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1932)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1963)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToExpression(ASTConverter.java:3602)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2174)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2965)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:751)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3302)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:450)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1138)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:802)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1315)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2020-09-30 13:06:03.461
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.InfixExpression.setOperator(InfixExpression.java:383)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1276)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2020)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToParenthesizedExpression(ASTConverter.java:3750)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1932)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1963)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToExpression(ASTConverter.java:3602)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2174)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2965)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:751)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3302)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:450)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1138)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:802)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1315)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 0 2020-09-30 13:06:03.462
+!MESSAGE Error in JDT Core during reconcile
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.InfixExpression.setOperator(InfixExpression.java:383)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1276)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2020)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToParenthesizedExpression(ASTConverter.java:3750)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1932)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1963)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToExpression(ASTConverter.java:3602)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2174)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2965)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:751)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3302)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:450)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1138)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:802)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1315)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.core 4 4 2020-09-30 13:06:03.475
+!MESSAGE Exception occurred during compilation unit conversion:
+----------------------------------- SOURCE BEGIN -------------------------------------
+package POS_Problem_Domain;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.*;
+
+/**
+ * Information regarding a given item for sale in the store
+ */
+public class Item {
+
+	/**
+	 * The identification number of the item available on the shelf
+	 */
+	private String number;
+	/**
+	 * A description providing information about the item available for sale.
+	 */
+	private String description;
+	/**
+	 * Information about the item selected for sale
+	 */
+	private ArrayList<SaleLineItem> saleLineItems;
+	/**
+	 * Universal Product Codes for the item
+	 */
+	private TreeMap<String, UPC> upcs;
+	/**
+	 * The different prices for the item. This is dependent on date, such as when there is a sale price in effect for a short time.
+	 */
+	private TreeSet<Price> prices;
+	/**
+	 * The tax category of the item being sold
+	 */
+	private TaxCategory taxCategory;
+
+	public String getNumber() {
+		return this.number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
+
+	public String getDescription() {
+		return this.description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public ArrayList<SaleLineItem> getSaleLineItems() {
+		return this.saleLineItems;
+	}
+
+	public void setSaleLineItems(ArrayList<SaleLineItem> saleLineItems) {
+		this.saleLineItems = saleLineItems;
+	}
+
+	public TreeMap<String, UPC> getUpcs() {
+		return this.upcs;
+	}
+
+	public void setUpcs(TreeMap<String, UPC> upcs) {
+		this.upcs = upcs;
+	}
+
+	public TreeSet<Price> getPrices() {
+		return this.prices;
+	}
+
+	public void setPrices(TreeSet<Price> prices) {
+		this.prices = prices;
+	}
+
+	public TaxCategory getTaxCategory() {
+		return this.taxCategory;
+	}
+
+	public void setTaxCategory(TaxCategory taxCategory) {
+		this.taxCategory = taxCategory;
+	}
+
+	/**
+	 * Default Constructor
+	 */
+	public Item() {
+		//Add UPC to Item?
+		this.saleLineItems = new ArrayList<SaleLineItem>();
+		this.upcs = new TreeMap<String, UPC>();
+		this.prices = new TreeSet<Price>();
+	}
+
+	/**
+	 * Constructor initializes the number of the item on the shelf and a description for that item
+	 * @param number
+	 * @param description
+	 */
+	public Item(String number, String description) {
+		this(); // Call default constructor
+		this.setNumber(number);
+		this.setDescription(description);
+	}
+
+	/**
+	 * Add a regular or sale price to the item
+	 * @param price
+	 */
+	public void addPrice(Price price) {
+		this.prices.add(price);
+	}
+
+	/**
+	 * Remove a regular or sale price from the item
+	 * @param price
+	 */
+	public void removePrice(Price price) {
+		this.prices.remove(price);
+	}
+
+	/**
+	 * Add a valid UPC to the item
+	 * @param upc
+	 */
+	public void addUPC(UPC upc) {
+		this.upcs.put(upc.getUpc(), upc);
+	}
+
+	/**
+	 * Remove a UPC from the item
+	 * @param upc
+	 */
+	public void removeUPC(UPC upc) {
+		this.upcs.remove(upc.getUpc(), upc);
+	}
+
+	/**
+	 * Determine the most recent price of the item for a given date
+	 * @param date
+	 */
+	public Price getPriceForDate(LocalDate date) {
+		Price mostRecentPrice = this.getPrices().first(); // Initalize with a valid value
+		
+		for (Price price : this.prices)
+			if (price.compareTo(mostRecentPrice) > 0)
+				mostRecentPrice = price; // if price is more recent than mostRecentPrice
+
+		if (mostRecentPrice == null)
+			// TODO - implement null error checking
+			throw new NullPointerException();
+		
+		else
+			return mostRecentPrice;
+	}
+
+	/**
+	 * Determine the tax rate for an item on a given date
+	 * @param date
+	 */
+	public BigDecimal getTaxRateForDate(LocalDate date) {
+		return this.getTaxCategory().getTaxRateForDate(date);
+	}
+
+	/**
+	 * Determine the total cost of the item multiplied by the quantity being sold for a given date
+	 * @param date
+	 * @param quantity
+	 */
+	public BigDecimal calcAmountForDateQty(LocalDate date, int quantity) {
+		return this.getPriceForDate(date).calcAmountForQty(quantity);
+	}
+
+	/**
+	 * Format the relevant information regarding an Item into a single string that can be printed to a display
+	 */
+	public String toString() {
+		// Format UPCs for the item
+		String upcString = "";
+		for ()
+		return this.getNumber() + " " + this.getDescription() + " Price: " + this.getPriceForDate(LocalDate.now()).toString() + " Tax Rate: " + this.getTaxRateForDate(LocalDate.now()) + " " + this.getUpcs().toString();
+	}
+
+
+}
+----------------------------------- SOURCE END -------------------------------------
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.InfixExpression.setOperator(InfixExpression.java:383)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1276)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2020)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToParenthesizedExpression(ASTConverter.java:3750)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1932)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1963)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToExpression(ASTConverter.java:3602)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2174)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2965)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:751)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3302)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.CompilationUnitResolver.convert(CompilationUnitResolver.java:323)
+	at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1231)
+	at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:820)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider$1.run(CoreASTProvider.java:271)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider.createAST(CoreASTProvider.java:263)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider.getAST(CoreASTProvider.java:196)
+	at org.eclipse.jdt.core.manipulation.SharedASTProviderCore.getAST(SharedASTProviderCore.java:138)
+	at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup.calculateASTandInform(SelectionListenerWithASTManager.java:175)
+	at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup$3.run(SelectionListenerWithASTManager.java:160)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jdt.core.manipulation 4 2 2020-09-30 13:06:03.477
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.core.manipulation".
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.InfixExpression.setOperator(InfixExpression.java:383)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1276)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2020)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToParenthesizedExpression(ASTConverter.java:3750)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1932)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1963)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToExpression(ASTConverter.java:3602)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2174)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2965)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:751)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3302)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.CompilationUnitResolver.convert(CompilationUnitResolver.java:323)
+	at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1231)
+	at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:820)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider$1.run(CoreASTProvider.java:271)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider.createAST(CoreASTProvider.java:263)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider.getAST(CoreASTProvider.java:196)
+	at org.eclipse.jdt.core.manipulation.SharedASTProviderCore.getAST(SharedASTProviderCore.java:138)
+	at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup.calculateASTandInform(SelectionListenerWithASTManager.java:175)
+	at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup$3.run(SelectionListenerWithASTManager.java:160)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jdt.core.manipulation 4 0 2020-09-30 13:06:03.479
+!MESSAGE Error in JDT Core during AST creation
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.InfixExpression.setOperator(InfixExpression.java:383)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1276)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2020)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToParenthesizedExpression(ASTConverter.java:3750)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1932)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1963)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToExpression(ASTConverter.java:3602)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2174)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2965)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:751)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3302)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.CompilationUnitResolver.convert(CompilationUnitResolver.java:323)
+	at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1231)
+	at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:820)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider$1.run(CoreASTProvider.java:271)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider.createAST(CoreASTProvider.java:263)
+	at org.eclipse.jdt.core.manipulation.CoreASTProvider.getAST(CoreASTProvider.java:196)
+	at org.eclipse.jdt.core.manipulation.SharedASTProviderCore.getAST(SharedASTProviderCore.java:138)
+	at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup.calculateASTandInform(SelectionListenerWithASTManager.java:175)
+	at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup$3.run(SelectionListenerWithASTManager.java:160)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)

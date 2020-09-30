@@ -104,7 +104,7 @@ public class Cashier {
 	 * Organize the relevant data related to the Cashier into a single string to print to a screen
 	 */
 	public String toString() {
-		return this.person + " " + this.getNumber();
+		return this.person + " ID: " + this.getNumber();
 	}
 
 
