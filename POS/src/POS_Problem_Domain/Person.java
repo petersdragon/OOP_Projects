@@ -26,6 +26,10 @@ public class Person {
 	 */
 	private String zip;
 	/**
+	 * The Phone Number of the individual
+	 */
+	private String phone;
+	/**
 	 * The Social Security Number of the individual
 	 */
 	private String ssn;
@@ -113,7 +117,17 @@ public class Person {
 	public void setZip(String zip) {
 		this.zip = zip;
 	}
-
+	public String getPhone() {
+		return this.phone;
+	}
+	/**
+	 * Set the SSN of the person
+	 * 
+	 * @param SSN of the person
+	 */
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	public String getSSN() {
 		return this.ssn;
 	}
@@ -159,20 +173,21 @@ public class Person {
 	 * @param zip
 	 * @param ssn
 	 */
-	public Person(String name, String address, String city, String state, String zip, String ssn) {
-		setName(name);
-		setAddress(address);
-		setCity(city);
-		setState(state);
-		setZip(zip);
-		setSSN(ssn);
+	public Person(String name, String address, String city, String state, String zip, String phone, String ssn) {
+		this.setName(name);
+		this.setAddress(address);
+		this.setCity(city);
+		this.setState(state);
+		this.setZip(zip);
+		this.setPhone(phone);
+		this.setSSN(ssn);
 	}
 
 	/**
 	 * Format the relevant information about a Person into a single string to print out.
 	 */
 	public String toString() {
-		return getName() + " " + getAddress() + " " + getCity() + ", " + getState() + " " + getZip() + " SSN: " + getSSN();
+		return this.getName() + " " + this.getAddress() + " " + this.getCity() + ", " + this.getState() + " " + this.getZip() + " Phone: " + this.getPhone() + " SSN: " + this.getSSN();
 	}
 
 

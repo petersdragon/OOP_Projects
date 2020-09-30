@@ -34,8 +34,8 @@ public class PromoPrice extends Price {
 	 * @param effectiveDate
 	 * @param endDate
 	 */
-	public PromoPrice(String price, String effectiveDate, String endDate) {
-		super(price, effectiveDate);
+	public PromoPrice(String price, String effectiveDate, String endDate, Item item) {
+		super(price, effectiveDate, item);
 		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
 		this.setEndDate(LocalDate.parse(effectiveDate, dateFormat));
 	}

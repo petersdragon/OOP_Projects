@@ -30,8 +30,7 @@ public class TaxCategory {
 	 * Default Constructor
 	 */
 	public TaxCategory() {
-		// TODO - implement TaxCategory.TaxCategory
-		throw new UnsupportedOperationException();
+		taxRates = new TreeSet<TaxRate>();
 	}
 
 	/**

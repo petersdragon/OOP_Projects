@@ -58,10 +58,12 @@ public class Price {
 	 * @param price
 	 * @param effectiveDate
 	 */
-	public Price(String price, String effectiveDate) {
+	public Price(String price, String effectiveDate, Item item) {
 		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
 		this.setPrice(new BigDecimal(price));
 		this.setEffectiveDate(LocalDate.parse(effectiveDate, dateFormat));
+		this.setItem(item);
+		this.getItem().addPrice(this);
 	}
 
 	/**

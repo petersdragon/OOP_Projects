@@ -71,7 +71,6 @@ public class Cashier {
 	 * @param password
 	 */
 	public Cashier(String number, Person person, String password) {
-		this();
 		this.setNumber(number);
 		this.setPerson(person);
 		this.setPassword(password);

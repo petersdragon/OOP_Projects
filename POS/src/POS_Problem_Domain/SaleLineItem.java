@@ -64,6 +64,7 @@ public class SaleLineItem {
 		this.setSale(sale);
 		this.setItem(item);
 		this.setQuantity(new Integer(quantity));
+		this.getSale().addSaleLineItem(this);
 	}
 
 	/**

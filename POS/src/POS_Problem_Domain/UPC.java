@@ -34,16 +34,17 @@ public class UPC {
 	 * Default Constructor
 	 */
 	public UPC() {
-		this.getItem().addUPC(this);
 	}
 
 	/**
 	 * Constructor initializes the value of the UPC code
 	 * @param upc
 	 */
-	public UPC(String upc) {
+	public UPC(String upc, Item item) {
 		this();
 		this.setUpc(upc);
+		this.setItem(item);
+		this.getItem().addUPC(this);
 	}
 
 	/**

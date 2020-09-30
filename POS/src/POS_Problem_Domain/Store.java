@@ -118,7 +118,6 @@ public class Store {
 	 * @param name
 	 */
 	public Store(String number, String name) {
-		this(); // Call Default Constructor
 		this.setNumber(number); // Set the store's number
 		this.setName(name); // Set the store's name
 	}

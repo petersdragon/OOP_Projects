@@ -2,6 +2,7 @@ package POS_Problem_Domain;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * The information regarding a set tax rate, including whether it is in effect or not.
@@ -46,10 +47,10 @@ public class TaxRate {
 	 * @param effectiveDate
 	 * @param rate
 	 */
-	public TaxRate(LocalDate effectiveDate, BigDecimal rate) {
-		this();
-		this.setEffectiveDate(effectiveDate);
-		this.setTaxRate(rate);
+	public TaxRate(String rate, String effectiveDate) {
+		this.setTaxRate(new BigDecimal(rate));
+
+		this.setEffectiveDate(LocalDate.parse(effectiveDate, DateTimeFormatter.ofPattern("dd-MMM-yyyy")));
 	}
 
 	/**
