@@ -58,8 +58,10 @@ public class Check extends AuthorizedPayment {
 	 * @param accountNumber
 	 * @param checkNumber
 	 */
-	public Check(String amountTendered, String accountNumber, String checkNumber) {
+	public Check(String amount, String amountTendered, String rountingNumber, String accountNumber, String checkNumber) {
+		this.setAmount(new BigDecimal(amount));
 		this.setAmountTendered(new BigDecimal(amountTendered));
+		this.setRoutingNumber(routingNumber);
 		this.setAccountNumber(accountNumber);
 		this.setCheckNumber(checkNumber);
 	}

@@ -2,6 +2,8 @@ package POS_Problem_Domain;
 
 import java.util.*;
 
+import POS_DM.StoreDM;
+
 /**
  * The information regarding a store at a single location
  */
@@ -263,6 +265,13 @@ public class Store {
 		return this.taxCategories.get(category);
 	}
 
+	/**
+	 * 
+	 */
+	public void openStore() {
+		StoreDM.loadStore(this);
+	}
+	
 	/**
 	 * Format the relevant information regarding a store into a single string that can be printed to a display.
 	 */

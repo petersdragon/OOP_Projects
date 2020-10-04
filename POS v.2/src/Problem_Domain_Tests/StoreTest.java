@@ -66,11 +66,11 @@ public class StoreTest {
 		SaleLineItem saleItem4 = new SaleLineItem(sale2, item2, "2");
 		
 		// Define Payments
-		Cash payment1 = new Cash(sale1.calcTotal(), "5.00");
+		Cash payment1 = new Cash(sale1.calcTotal().toString(), "5.00");
 		sale1.addPayment(payment1);
-		Check payment2 = new Check(sale2.calcTotal().toString(), "284839281", "829");
+		Check payment2 = new Check(sale2.calcTotal().toString(), sale2.calcTotal().toString(), "1028372633", "284839281", "829");
 		sale2.addPayment(payment2);
-		
+
 		// Define Session and add Sale
 		Session session1 = new Session(cashier2, register1);
 		session1.addSale(sale1);	

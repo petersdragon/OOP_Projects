@@ -36,7 +36,7 @@ public class PromoPrice extends Price {
 	 */
 	public PromoPrice(String price, String effectiveDate, String endDate, Item item) {
 		super(price, effectiveDate, item);
-		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
+		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("M/d/yy");
 		this.setEndDate(LocalDate.parse(effectiveDate, dateFormat));
 	}
 

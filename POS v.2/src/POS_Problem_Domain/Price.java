@@ -59,9 +59,8 @@ public class Price implements Comparable<Price>{
 	 * @param effectiveDate
 	 */
 	public Price(String price, String effectiveDate, Item item) {
-		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
 		this.setPrice(new BigDecimal(price));
-		this.setEffectiveDate(LocalDate.parse(effectiveDate, dateFormat));
+		this.setEffectiveDate(LocalDate.parse(effectiveDate, DateTimeFormatter.ofPattern("M/d/yy")));
 		this.setItem(item);
 		this.getItem().addPrice(this);
 	}

@@ -49,8 +49,7 @@ public class TaxRate implements Comparable<TaxRate>{
 	 */
 	public TaxRate(String rate, String effectiveDate) {
 		this.setTaxRate(new BigDecimal(rate));
-
-		this.setEffectiveDate(LocalDate.parse(effectiveDate, DateTimeFormatter.ofPattern("dd-MMM-yyyy")));
+		this.setEffectiveDate(LocalDate.parse(effectiveDate, DateTimeFormatter.ofPattern("M/d/yy")));
 	}
 
 	/**

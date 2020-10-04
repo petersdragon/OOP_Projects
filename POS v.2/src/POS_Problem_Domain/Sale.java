@@ -72,7 +72,10 @@ public class Sale {
 	 */
 	public Sale(String taxFree) {
 		this();
-		this.setTaxFree(Boolean.parseBoolean(taxFree));
+		if (taxFree.equals("Y"))
+			this.setTaxFree(true);
+		else
+			this.setTaxFree(false);
 	}
 
 	/**

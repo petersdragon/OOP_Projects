@@ -20,8 +20,8 @@ public class Cash extends Payment {
 	 * @param amount
 	 * @param amountTendered
 	 */
-	public Cash(BigDecimal amount, String amountTendered) {
-		this.setAmount(amount);
+	public Cash(String amount, String amountTendered) {
+		this.setAmount(new BigDecimal(amount));
 		this.setAmountTendered(new BigDecimal(amountTendered));
 	}
 

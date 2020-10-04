@@ -1,6 +1,8 @@
 package POS_Problem_Domain;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Using a Credit card as a payment method
@@ -58,10 +60,12 @@ public class Credit extends AuthorizedPayment {
 	 * @param accountNumber
 	 * @param expireDate
 	 */
-	public Credit(String cardType, String accountNumber, String expireDate) {
+	public Credit(String amount, String amountTendered, String cardType, String accountNumber, String expireDate) {
+		this.setAmount(new BigDecimal(amount));
+		this.setAmountTendered(new BigDecimal(amountTendered));
 		this.setCardType(cardType);
 		this.setAccountNumber(accountNumber);
-		this.setExpireDate(LocalDate.parse(expireDate));
+		this.setExpireDate(LocalDate.parse(expireDate, DateTimeFormatter.ofPattern("M/d/yyyy")));
 	}
 
 	/**

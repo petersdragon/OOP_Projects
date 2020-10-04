@@ -45,6 +45,14 @@ public class TaxCategory {
 		this.setCategory(taxCategory);
 	}
 
+	public TaxCategory(String category, String effectiveDate, String rate) {
+		this();
+		this.setCategory(category);
+		// Make new TaxRate
+		TaxRate taxRate = new TaxRate(rate, effectiveDate);
+		this.addTaxRate(taxRate);
+	}
+	
 	/**
 	 * For a given date, return the valid tax rates
 	 * @param date
