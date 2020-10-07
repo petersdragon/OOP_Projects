@@ -28,7 +28,7 @@ public class CashierEditPanel extends JPanel {
 				currentFrame.getContentPane().revalidate();
 			}
 		});
-		btnNewButton.setBounds(68, 151, 61, 25);
+		btnNewButton.setBounds(262, 154, 94, 25);
 		add(btnNewButton);
 		
 		JLabel lblNewLabel = new JLabel("Cashier Edit Panel");

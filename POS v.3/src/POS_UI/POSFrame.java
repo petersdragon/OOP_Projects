@@ -61,6 +61,13 @@ public class POSFrame extends JFrame {
 		mnNewMenu.add(mntmNewMenuItem);
 		
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Item");
+		mntmNewMenuItem_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				getContentPane().removeAll();
+				getContentPane().add(new ItemSelectionPanel(currentFrame,store));
+				getContentPane().revalidate();				
+			}
+		});
 		mnNewMenu.add(mntmNewMenuItem_3);
 		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Store");
@@ -73,10 +80,24 @@ public class POSFrame extends JFrame {
 		});
 		
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Register");
+		mntmNewMenuItem_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				getContentPane().removeAll();
+				getContentPane().add(new RegisterSelectionPanel(currentFrame,store));
+				getContentPane().revalidate();				
+			}
+		});
 		mnNewMenu.add(mntmNewMenuItem_4);
 		mnNewMenu.add(mntmNewMenuItem_2);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Tax Category");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				getContentPane().removeAll();
+				getContentPane().add(new TaxCategorySelectionPanel(currentFrame,store));
+				getContentPane().revalidate();				
+			}
+		});
 		mnNewMenu.add(mntmNewMenuItem_1);
 		
 		JMenu mnNewMenu_2 = new JMenu("POS");

@@ -16,11 +16,11 @@ public class POSHomePanel extends JPanel {
 		setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Welcome to the Store");
-		lblNewLabel.setBounds(12, 13, 137, 16);
+		lblNewLabel.setBounds(156, 13, 137, 16);
 		add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel(store.getName());
-		lblNewLabel_1.setBounds(12, 42, 173, 53);
+		lblNewLabel_1.setBounds(138, 42, 173, 53);
 		add(lblNewLabel_1);
 
 	}

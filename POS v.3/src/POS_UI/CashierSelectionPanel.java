@@ -33,7 +33,7 @@ public class CashierSelectionPanel extends JPanel {
 
 			}
 		});
-		btnNewButton.setBounds(12, 195, 97, 25);
+		btnNewButton.setBounds(39, 195, 97, 25);
 		add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Edit");
@@ -42,7 +42,7 @@ public class CashierSelectionPanel extends JPanel {
 				
 			}
 		});
-		btnNewButton_1.setBounds(131, 195, 97, 25);
+		btnNewButton_1.setBounds(175, 195, 97, 25);
 		add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Delete");
@@ -51,15 +51,11 @@ public class CashierSelectionPanel extends JPanel {
 				
 			}
 		});
-		btnNewButton_2.setBounds(247, 195, 97, 25);
+		btnNewButton_2.setBounds(311, 195, 97, 25);
 		add(btnNewButton_2);
 		
-		JList list = new JList();
-		list.setBounds(88, 168, 256, -111);
-		add(list);
-		
 		JList list_1 = new JList();
-		list_1.setBounds(69, 41, 249, 146);
+		list_1.setBounds(100, 41, 249, 146);
 		add(list_1);
 
 	}
