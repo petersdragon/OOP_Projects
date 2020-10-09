@@ -44,12 +44,15 @@ public class POSFrame extends JFrame {
 		
 		currentFrame = this;
 		
+		// Add the Menu bar to navigate to the different panels
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
+		// Add and define behavior for menu option "Maintenance"
 		JMenu mnNewMenu = new JMenu("Maintenance");
 		menuBar.add(mnNewMenu);
 		
+		// Add and define behavior for menu option "Cashier"
 		JMenuItem mntmNewMenuItem = new JMenuItem("Cashier");
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -60,6 +63,7 @@ public class POSFrame extends JFrame {
 		});
 		mnNewMenu.add(mntmNewMenuItem);
 		
+		// Add and define behavior for menu option "Item"
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Item");
 		mntmNewMenuItem_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -70,6 +74,7 @@ public class POSFrame extends JFrame {
 		});
 		mnNewMenu.add(mntmNewMenuItem_3);
 		
+		// Add and define behavior for menu option "Store"
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Store");
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -79,6 +84,7 @@ public class POSFrame extends JFrame {
 			}
 		});
 		
+		// Add and define behavior for menu option "Register"
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Register");
 		mntmNewMenuItem_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

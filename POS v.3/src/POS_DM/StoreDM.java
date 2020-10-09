@@ -69,6 +69,7 @@ public class StoreDM {
 	        	else if (dataType.equals("Session")) {
 	        		currentSession = new Session(store.findCashierByNumber(splitLine[1]),store.findRegisterByNumber(splitLine[2]));
 	        		store.addSession(currentSession);
+	        		store.findCashierByNumber(splitLine[1]).addSession(currentSession);
 	        	}
 	        		        	
 	        	else if (dataType.equals("Sale")) {

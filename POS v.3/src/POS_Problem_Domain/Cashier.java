@@ -101,6 +101,16 @@ public class Cashier {
 	}
 
 	/**
+	 * Determine if the cashier can be removed from the list without problems
+	 */
+	public Boolean isOKToDelete() {
+		if (this.getSessions().isEmpty())
+			return true;
+		else
+			return false;
+	}
+	
+	/**
 	 * Organize the relevant data related to the Cashier into a single string to print to a screen
 	 */
 	public String toString() {
