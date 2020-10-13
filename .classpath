@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Car_Dealer_Program/src"/>
+	<classpathentry kind="src" path="DiceRoller Project/src"/>
+	<classpathentry kind="src" path="DiceRoller2 Project/src"/>
+	<classpathentry kind="src" path="Hello_World/src"/>
+	<classpathentry kind="src" path="POS v.2/src"/>
+	<classpathentry kind="src" path="POS v.3/src"/>
+	<classpathentry kind="src" path="POS/src"/>
+	<classpathentry kind="src" path="Program_2_1/src"/>
+	<classpathentry kind="src" path="Program_2_2/src"/>
+	<classpathentry kind="src" path="Project 1"/>
+	<classpathentry kind="output" path="Car_Dealer_Program/bin"/>
+</classpath>

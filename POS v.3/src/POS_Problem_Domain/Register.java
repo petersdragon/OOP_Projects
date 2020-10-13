@@ -1,5 +1,7 @@
 package POS_Problem_Domain;
 
+import java.util.ArrayList;
+
 /**
  * The cash register used during a session to hold cash payments and dispense change.
  */
@@ -14,6 +16,8 @@ public class Register {
 	 */
 	private CashDrawer cashDrawer;
 
+	private ArrayList<Session> sessions;
+	
 	public String getNumber() {
 		return this.number;
 	}
@@ -34,6 +38,7 @@ public class Register {
 	 * Default Constructor
 	 */
 	public Register() {
+		this.sessions = new ArrayList<Session>();
 		this.setCashDrawer(new CashDrawer());
 	}
 
@@ -45,7 +50,7 @@ public class Register {
 		this();
 		this.setNumber(number);
 	}
-
+	
 	/**
 	 * Formats the relevant information regarding a Register and returns it in a single string to print to a display
 	 */
@@ -53,5 +58,23 @@ public class Register {
 		return this.getNumber();
 	}
 
+	public boolean isOKToDelete() {
+		if (this.getSessions().isEmpty())
+			return true;
+		else
+			return false;
+	}
+
+	public void addSession(Session session) {
+		this.getSessions().add(session);
+	}
+	
+	public void removeSession(Session session) {
+		this.getSessions().remove(session);
+	}
+	
+	private ArrayList<Session> getSessions() {
+		return this.sessions;
+	}
 
 }
