@@ -64,6 +64,14 @@ public class Cashier {
 	}
 
 	/**
+	 * Constructor initialized with the person being the cashier
+	 * @param person
+	 */
+	public Cashier(Person person) {
+		this();
+		this.setPerson(person);
+	}
+	/**
 	 * Constructor sets the person being the cashier and initializes the identification number for the Cashier, the person filling the role, and the authorization password associated with that Cashier
 	 * @param number
 	 * @param person

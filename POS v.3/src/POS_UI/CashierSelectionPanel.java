@@ -11,6 +11,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 
 import POS_Problem_Domain.Cashier;
+import POS_Problem_Domain.Person;
 import POS_Problem_Domain.Store;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
@@ -20,11 +21,14 @@ public class CashierSelectionPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+
+	private JButton addButton;// = new JButton("Add");
+	private JButton editButton;// = new JButton("Edit");
+	private JButton deleteButton;// = new JButton("Delete");
+	
 	public CashierSelectionPanel(JFrame currentFrame, Store store) {
 		setLayout(null);
 		
-		JButton editButton = new JButton("Edit");
-		JButton deleteButton = new JButton("Delete");
 		
 		JLabel lblNewLabel = new JLabel("Cashier Selection List");
 		lblNewLabel.setBounds(158, 5, 133, 16);
@@ -42,6 +46,8 @@ public class CashierSelectionPanel extends JPanel {
 					editButton.setEnabled(true);
 					if (cashierDisplayList.getSelectedValue().isOKToDelete())
 						deleteButton.setEnabled(true);
+					else
+						deleteButton.setEnabled(false);
 				}
 				else {
 					editButton.setEnabled(false);
@@ -52,17 +58,18 @@ public class CashierSelectionPanel extends JPanel {
 		cashierDisplayList.setBounds(100, 41, 249, 146);
 		add(cashierDisplayList);
 		
-		JButton addButton = new JButton("Add");
+		addButton = new JButton("Add");
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				currentFrame.getContentPane().removeAll();
-				currentFrame.getContentPane().add(new CashierEditPanel(currentFrame, store, new Cashier(), true));
+				currentFrame.getContentPane().add(new CashierEditPanel(currentFrame, store, new Cashier(new Person()), true));
 				currentFrame.getContentPane().revalidate();
 			}
 		});
 		addButton.setBounds(39, 195, 97, 25);
 		add(addButton);
 		
+		editButton = new JButton("Edit");
 		editButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Cashier cashier = cashierDisplayList.getSelectedValue();
@@ -75,6 +82,7 @@ public class CashierSelectionPanel extends JPanel {
 		editButton.setEnabled(false);
 		add(editButton);
 		
+		deleteButton = new JButton("Delete");
 		deleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Cashier cashier = cashierDisplayList.getSelectedValue();
@@ -87,7 +95,6 @@ public class CashierSelectionPanel extends JPanel {
 		deleteButton.setBounds(311, 195, 97, 25);
 		deleteButton.setEnabled(false);
 		add(deleteButton);
-
 
 	}
 }

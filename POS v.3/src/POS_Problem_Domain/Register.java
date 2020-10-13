@@ -58,7 +58,10 @@ public class Register {
 		return this.getNumber();
 	}
 
-	public boolean isOKToDelete() {
+	/**
+	 * Determine if the register can be removed from the list without problems
+	 */
+	public Boolean isOKToDelete() {
 		if (this.getSessions().isEmpty())
 			return true;
 		else

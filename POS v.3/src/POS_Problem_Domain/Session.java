@@ -86,8 +86,8 @@ public class Session {
 		this();
 		this.setCashier(cashier);
 		this.setRegister(register);
-		this.setStartDateTime(LocalDateTime.now());
 		this.getRegister().addSession(this);
+		this.setStartDateTime(LocalDateTime.now());
 	}
 
 	/**

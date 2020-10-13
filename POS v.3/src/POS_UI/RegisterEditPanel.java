@@ -1,9 +1,9 @@
+package POS_UI;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import POS_Problem_Domain.Register;
 import POS_Problem_Domain.Store;
-import POS_UI.CashierSelectionPanel;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -50,7 +50,8 @@ public class RegisterEditPanel extends JPanel {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				currentFrame.getContentPane().removeAll();
-				currentFrame.getContentPane().add(new RegisterSelectionPanel(currentFrame, store));
+				if (isAdd)
+					currentFrame.getContentPane().add(new RegisterSelectionPanel(currentFrame, store));
 				currentFrame.getContentPane().revalidate();
 			}
 		});

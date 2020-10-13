@@ -160,8 +160,7 @@ public class Person {
 	 * Default Constructor for a Person
 	 */
 	public Person() {
-		// TODO - implement Person.Person
-		throw new UnsupportedOperationException();
+		// Do nothing
 	}
 
 	/**
@@ -174,6 +173,7 @@ public class Person {
 	 * @param ssn
 	 */
 	public Person(String name, String address, String city, String state, String zip, String phone, String ssn) {
+		this();
 		this.setName(name);
 		this.setAddress(address);
 		this.setCity(city);
