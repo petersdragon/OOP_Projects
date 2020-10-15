@@ -16,6 +16,8 @@ public class TaxCategory {
 	 * The rates for this particular tax category
 	 */
 	private TreeSet<TaxRate> taxRates;
+	
+	private ArrayList<Item> items;
 
 	public String getCategory() {
 		return this.taxCategory;
@@ -34,6 +36,7 @@ public class TaxCategory {
 	 */
 	public TaxCategory() {
 		taxRates = new TreeSet<TaxRate>();
+		items = new ArrayList<Item>();
 	}
 
 	/**
@@ -104,6 +107,21 @@ public class TaxCategory {
 		}
 		
 		return this.getCategory() + ": " + ratesString;
+	}
+
+	public Boolean isOKToDelete() {
+		if (this.getItems().isEmpty())
+			return true;
+		else
+			return false;
+	}
+
+	private ArrayList<Item> getItems() {
+		return this.items;
+	}
+
+	public void addItem(Item item) {
+		this.items.add(item);
 	}
 
 

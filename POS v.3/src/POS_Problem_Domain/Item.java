@@ -79,7 +79,9 @@ public class Item {
 	}
 
 	public void setTaxCategory(TaxCategory taxCategory) {
+		// TO ADD: if item appears in TaxCategory, remove it first.
 		this.taxCategory = taxCategory;
+		this.taxCategory.addItem(this);
 	}
 
 	/**
