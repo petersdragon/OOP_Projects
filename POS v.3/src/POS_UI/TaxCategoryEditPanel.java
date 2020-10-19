@@ -17,14 +17,29 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.AncestorListener;
+import javax.swing.event.AncestorEvent;
 
 public class TaxCategoryEditPanel extends JPanel {
 	private JTextField categoryField;
-
+	
 	/**
 	 * Create the panel.
 	 */
 	public TaxCategoryEditPanel(JFrame currentFrame, Store store, TaxCategory category, Boolean isAdd) {
+		
+		JPanel currentPanel = this;
+		addAncestorListener(new AncestorListener() {
+			public void ancestorAdded(AncestorEvent event) {
+				DefaultListModel<TaxRate> taxRateList = new DefaultListModel<TaxRate>();
+				for (TaxRate rate : category.getTaxRates())
+					taxRateList.addElement(rate);	
+			}
+			public void ancestorMoved(AncestorEvent event) {
+			}
+			public void ancestorRemoved(AncestorEvent event) {
+			}
+		});
 		setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Tax Category Edit");
@@ -47,8 +62,8 @@ public class TaxCategoryEditPanel extends JPanel {
 
 		DefaultListModel<TaxRate> taxRateList = new DefaultListModel<TaxRate>();
 		
-		for (TaxRate rateList : store.getTaxCategories().values())
-			taxRateList.addElement(category);
+		for (TaxRate rate : category.getTaxRates())
+			taxRateList.addElement(rate);
 		
 		JList<TaxRate> taxRatesDisplayList = new JList<TaxRate>(taxRateList);
 		taxRatesDisplayList.addListSelectionListener(new ListSelectionListener() {
@@ -61,8 +76,8 @@ public class TaxCategoryEditPanel extends JPanel {
 		JButton saveButton = new JButton("Save");
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cashier.getPerson().setSSN(ssnField.getText());
-				if (isAdd) { store.addCashier(cashier); }
+				category.setCategory(categoryField.getText());
+				if (isAdd) { store.addTaxCategory(category); }
 				currentFrame.getContentPane().removeAll();
 				currentFrame.getContentPane().add(new CashierSelectionPanel(currentFrame, store));
 				currentFrame.getContentPane().revalidate();
@@ -86,7 +101,7 @@ public class TaxCategoryEditPanel extends JPanel {
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				currentFrame.getContentPane().removeAll();
-				currentFrame.getContentPane().add(new TaxRateEditPanel(currentFrame, store, category, new TaxRate(), isAdd));
+				currentFrame.getContentPane().add(new TaxRateEditPanel(currentFrame, currentPanel, store, category, new TaxRate(), isAdd));
 				currentFrame.getContentPane().revalidate();
 			}
 		});
@@ -97,7 +112,7 @@ public class TaxCategoryEditPanel extends JPanel {
 		editButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				currentFrame.getContentPane().removeAll();
-				currentFrame.getContentPane().add(new TaxRateEditPanel(currentFrame, store, category, taxRatesDisplayList.getSelectedValue(), true));
+				currentFrame.getContentPane().add(new TaxRateEditPanel(currentFrame, currentPanel, store, category, taxRatesDisplayList.getSelectedValue(), true));
 				currentFrame.getContentPane().revalidate();
 			}
 		});

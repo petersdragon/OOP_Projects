@@ -3,6 +3,7 @@ package POS_Problem_Domain;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 /**
  * The information regarding a set tax rate, including whether it is in effect or not.
@@ -17,6 +18,8 @@ public class TaxRate implements Comparable<TaxRate>{
 	 * The date on which the tax rate goes into effect
 	 */
 	private LocalDate effectiveDate;
+	
+	private ArrayList<TaxCategory> categories;
 
 	public BigDecimal getTaxRate() {
 		return this.taxRate;
@@ -38,8 +41,7 @@ public class TaxRate implements Comparable<TaxRate>{
 	 * Default Constructor
 	 */
 	public TaxRate() {
-		// TODO - implement TaxRate.TaxRate
-		throw new UnsupportedOperationException();
+		this.categories = new ArrayList<TaxCategory>();
 	}
 
 	/**
@@ -48,6 +50,7 @@ public class TaxRate implements Comparable<TaxRate>{
 	 * @param rate
 	 */
 	public TaxRate(String rate, String effectiveDate) {
+		this();
 		this.setTaxRate(new BigDecimal(rate));
 		this.setEffectiveDate(LocalDate.parse(effectiveDate, DateTimeFormatter.ofPattern("M/d/yy")));
 	}
@@ -75,6 +78,22 @@ public class TaxRate implements Comparable<TaxRate>{
 	 */
 	public String toString() {
 		return "$" + this.getTaxRate() + ", " + this.effectiveDate;
+	}
+
+	public Boolean isOKToDelete() {
+		if (this.getCategories().isEmpty())
+			return true;
+		else
+			return false;
+	}
+
+	private ArrayList<TaxCategory> getCategories() {
+		return this.categories;		
+	}
+
+	public void addCategory(TaxCategory taxCategory) {
+		
+		
 	}
 
 

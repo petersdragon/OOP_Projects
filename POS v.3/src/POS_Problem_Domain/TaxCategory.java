@@ -27,7 +27,7 @@ public class TaxCategory {
 		this.taxCategory = taxCategory;
 	}
 
-	private TreeSet<TaxRate> getTaxRates(){
+	public TreeSet<TaxRate> getTaxRates(){
 		return this.taxRates;
 	}
 	
@@ -86,6 +86,7 @@ public class TaxCategory {
 	 */
 	public void addTaxRate(TaxRate taxRate) {
 		this.taxRates.add(taxRate);
+		taxRate.addCategory(this);
 	}
 
 	/**

@@ -22,7 +22,7 @@ public class TaxRateEditPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public TaxRateEditPanel(JFrame currentFrame, Store store, TaxCategory taxCategory, TaxRate taxRate, Boolean isAdd) {
+	public TaxRateEditPanel(JFrame currentFrame, JPanel currentPanel, Store store, TaxCategory taxCategory, TaxRate taxRate, Boolean isAdd) {
 		setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Tax Rate Edit");
@@ -62,8 +62,9 @@ public class TaxRateEditPanel extends JPanel {
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				currentFrame.getContentPane().removeAll();
-				currentFrame.getContentPane().add(new TaxCategoryEditPanel(currentFrame, store, taxCategory, isAdd));
+				currentFrame.getContentPane().add(currentPanel);
 				currentFrame.getContentPane().revalidate();
+				currentFrame.getContentPane().repaint();
 			}
 		});
 		cancelButton.setBounds(127, 136, 85, 21);
