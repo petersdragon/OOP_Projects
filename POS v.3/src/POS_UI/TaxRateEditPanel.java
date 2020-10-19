@@ -22,7 +22,7 @@ public class TaxRateEditPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public TaxRateEditPanel(JFrame currentFrame, Store store, TaxCategory taxCategory, TaxRate taxRate, Boolean isAdd, Boolean isRateAdd) {
+	public TaxRateEditPanel(JFrame currentFrame, Store store, TaxCategory taxCategory, TaxRate taxRate, Boolean isAdd) {
 		setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Tax Rate Edit");
@@ -52,7 +52,7 @@ public class TaxRateEditPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				taxRate.setTaxRate(new BigDecimal(textField.getText()));
 				taxRate.setEffectiveDate(LocalDate.parse(textField.getText(), DateTimeFormatter.ofPattern("M/d/yy")));
-				if(isRateAdd) taxCategory.addTaxRate(taxRate);
+				if(isAdd) taxCategory.addTaxRate(taxRate);
 			}
 		});
 		saveButton.setBounds(10, 136, 85, 21);

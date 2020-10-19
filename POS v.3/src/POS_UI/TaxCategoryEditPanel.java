@@ -3,6 +3,7 @@ package POS_UI;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import POS_Problem_Domain.Cashier;
 import POS_Problem_Domain.Store;
 import POS_Problem_Domain.TaxCategory;
 import POS_Problem_Domain.TaxRate;
@@ -47,9 +48,9 @@ public class TaxCategoryEditPanel extends JPanel {
 		DefaultListModel<TaxRate> taxRateList = new DefaultListModel<TaxRate>();
 		
 		for (TaxRate rateList : store.getTaxCategories().values())
-			rateList.addElement(category);
+			taxRateList.addElement(category);
 		
-		JList<TaxRate> taxRatesDisplayList = new JList<TaxRate>(rateList);
+		JList<TaxRate> taxRatesDisplayList = new JList<TaxRate>(taxRateList);
 		taxRatesDisplayList.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
 			}
@@ -74,7 +75,7 @@ public class TaxCategoryEditPanel extends JPanel {
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				currentFrame.getContentPane().removeAll();
-				currentFrame.getContentPane().add(new TaxRateSelectionPanel(currentFrame, store, , isAdd, false));
+				currentFrame.getContentPane().add(new TaxCategorySelectionPanel(currentFrame, store));
 				currentFrame.getContentPane().revalidate();
 			}
 		});
@@ -85,7 +86,7 @@ public class TaxCategoryEditPanel extends JPanel {
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				currentFrame.getContentPane().removeAll();
-				currentFrame.getContentPane().add(new TaxRateEditPanel(currentFrame, store, new TaxRate(), isAdd, true));
+				currentFrame.getContentPane().add(new TaxRateEditPanel(currentFrame, store, category, new TaxRate(), isAdd));
 				currentFrame.getContentPane().revalidate();
 			}
 		});
@@ -96,7 +97,7 @@ public class TaxCategoryEditPanel extends JPanel {
 		editButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				currentFrame.getContentPane().removeAll();
-				currentFrame.getContentPane().add(new TaxRateEditPanel(currentFrame, store, taxRatesDisplayList.getSelectedValue(), true));
+				currentFrame.getContentPane().add(new TaxRateEditPanel(currentFrame, store, category, taxRatesDisplayList.getSelectedValue(), true));
 				currentFrame.getContentPane().revalidate();
 			}
 		});
@@ -106,10 +107,10 @@ public class TaxCategoryEditPanel extends JPanel {
 		JButton deleteButton = new JButton("Delete");
 		deleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TaxCategory category = taxRatesDisplayList.getSelectedValue();
-				if(category.isOKToDelete()) {
-					store.removeTaxCategory(category);
-					categoryList.removeElement(category);
+				TaxRate rate = taxRatesDisplayList.getSelectedValue();
+				if(rate.isOKToDelete()) {
+					category.removeTaxRate(rate);
+					taxRateList.removeElement(category);
 				}
 			}
 		});
