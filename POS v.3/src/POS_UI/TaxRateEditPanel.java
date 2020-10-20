@@ -17,7 +17,7 @@ import java.awt.event.ActionEvent;
 
 public class TaxRateEditPanel extends JPanel {
 	private JTextField rateField;
-	private JTextField dateField;
+	private JTextField dateTextField;
 
 	/**
 	 * Create the panel.
@@ -26,11 +26,11 @@ public class TaxRateEditPanel extends JPanel {
 		setLayout(null);
 		
 		JLabel ratePanelLabel = new JLabel("Tax Rate Edit");
-		ratePanelLabel.setBounds(167, 10, 45, 13);
+		ratePanelLabel.setBounds(185, 10, 79, 13);
 		add(ratePanelLabel);
 		
 		JLabel rateLabel = new JLabel("Rate");
-		rateLabel.setBounds(24, 43, 45, 13);
+		rateLabel.setBounds(137, 43, 45, 13);
 		add(rateLabel);
 		
 		String rateString = "";
@@ -41,24 +41,24 @@ public class TaxRateEditPanel extends JPanel {
 		}
 		
 		rateField = new JTextField(rateString);
-		rateField.setBounds(79, 40, 96, 19);
+		rateField.setBounds(217, 40, 96, 19);
 		add(rateField);
 		rateField.setColumns(10);
 		
 		JLabel dateLabel = new JLabel("Start Date");
-		dateLabel.setBounds(24, 76, 45, 13);
+		dateLabel.setBounds(137, 72, 68, 13);
 		add(dateLabel);
 		
-		dateField = new JTextField(dateString);
-		dateField.setBounds(79, 69, 96, 19);
-		add(dateField);
-		dateField.setColumns(10);
+		dateTextField = new JTextField(dateString);
+		dateTextField.setBounds(217, 69, 96, 19);
+		add(dateTextField);
+		dateTextField.setColumns(10);
 		
 		JButton saveButton = new JButton("Save");
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				taxRate.setTaxRate(new BigDecimal(rateField.getText()));
-				taxRate.setEffectiveDate(LocalDate.parse(dateField.getText(), DateTimeFormatter.ofPattern("M/d/yy")));
+				taxRate.setEffectiveDate(LocalDate.parse(dateTextField.getText(), DateTimeFormatter.ofPattern("M/d/yy")));
 				if(isAdd) taxCategory.addTaxRate(taxRate);// If a duplicate with the same key exists, the old category will be lost, even if it was tied to Sessions. Need additional error checking here.
 				currentFrame.getContentPane().removeAll();
 				currentFrame.getContentPane().add(currentPanel);
@@ -66,7 +66,7 @@ public class TaxRateEditPanel extends JPanel {
 				currentFrame.getContentPane().repaint();
 			}
 		});
-		saveButton.setBounds(10, 136, 85, 21);
+		saveButton.setBounds(93, 136, 85, 21);
 		add(saveButton);
 		
 		JButton cancelButton = new JButton("Cancel");
@@ -78,9 +78,7 @@ public class TaxRateEditPanel extends JPanel {
 				currentFrame.getContentPane().repaint();
 			}
 		});
-		cancelButton.setBounds(127, 136, 85, 21);
+		cancelButton.setBounds(271, 136, 85, 21);
 		add(cancelButton);
-
 	}
-
 }

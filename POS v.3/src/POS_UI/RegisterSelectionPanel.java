@@ -30,7 +30,7 @@ public class RegisterSelectionPanel extends JPanel {
 
 		
 		JLabel lblNewLabel = new JLabel("Register List");
-		lblNewLabel.setBounds(139, 10, 85, 13);
+		lblNewLabel.setBounds(182, 10, 85, 13);
 		add(lblNewLabel);
 		
 		DefaultListModel<Register> registerList = new DefaultListModel<Register>();
@@ -54,7 +54,7 @@ public class RegisterSelectionPanel extends JPanel {
 				}
 			}
 		});
-		registerDisplayList.setBounds(116, 33, 182, 149);
+		registerDisplayList.setBounds(134, 33, 182, 149);
 		add(registerDisplayList);
 		
 		addButton = new JButton("Add");
@@ -65,7 +65,7 @@ public class RegisterSelectionPanel extends JPanel {
 				currentFrame.getContentPane().revalidate();
 			}
 		});
-		addButton.setBounds(58, 192, 85, 21);
+		addButton.setBounds(48, 192, 85, 21);
 		add(addButton);
 		
 		editButton = new JButton("Edit");
@@ -76,7 +76,7 @@ public class RegisterSelectionPanel extends JPanel {
 				currentFrame.getContentPane().revalidate();
 			}
 		});
-		editButton.setBounds(168, 192, 85, 21);
+		editButton.setBounds(181, 192, 85, 21);
 		editButton.setEnabled(false);
 		add(editButton);
 		
@@ -90,7 +90,7 @@ public class RegisterSelectionPanel extends JPanel {
 				}
 			}
 		});
-		deleteButton.setBounds(281, 192, 85, 21);
+		deleteButton.setBounds(314, 192, 85, 21);
 		deleteButton.setEnabled(false);
 		add(deleteButton);
 

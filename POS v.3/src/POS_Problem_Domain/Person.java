@@ -187,7 +187,7 @@ public class Person {
 	 * Format the relevant information about a Person into a single string to print out.
 	 */
 	public String toString() {
-		return this.getName() + " " + this.getAddress() + " " + this.getCity() + ", " + this.getState() + ", " + this.getZip() + " Phone: " + this.getPhone() + " SSN: " + this.getSSN();
+		return this.getName() + ", Phone: " + this.getPhone();
 	}
 
 

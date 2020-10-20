@@ -21,16 +21,16 @@ public class RegisterEditPanel extends JPanel {
 		setLayout(null);
 		
 		JLabel registerLabel = new JLabel("Register Edit");
-		registerLabel.setBounds(185, 10, 45, 13);
+		registerLabel.setBounds(184, 10, 82, 13);
 		add(registerLabel);
 		
 		numberField = new JTextField(register.getNumber());
-		numberField.setBounds(148, 73, 96, 19);
+		numberField.setBounds(203, 73, 96, 19);
 		add(numberField);
 		numberField.setColumns(10);
 		
 		JLabel numberLabel = new JLabel("Number");
-		numberLabel.setBounds(74, 76, 45, 13);
+		numberLabel.setBounds(148, 76, 45, 13);
 		add(numberLabel);
 		
 		JButton saveButton = new JButton("Save");
@@ -43,7 +43,7 @@ public class RegisterEditPanel extends JPanel {
 				currentFrame.getContentPane().revalidate();
 			}
 		});
-		saveButton.setBounds(63, 194, 85, 21);
+		saveButton.setBounds(93, 194, 85, 21);
 		add(saveButton);
 		
 		JButton cancelButton = new JButton("Cancel");
@@ -54,7 +54,7 @@ public class RegisterEditPanel extends JPanel {
 				currentFrame.getContentPane().revalidate();
 			}
 		});
-		cancelButton.setBounds(238, 194, 85, 21);
+		cancelButton.setBounds(271, 194, 85, 21);
 		add(cancelButton);
 
 		

@@ -80,11 +80,12 @@ public class TaxRate implements Comparable<TaxRate>{
 		return "$" + this.getTaxRate() + ", " + this.getEffectiveDate().format(DateTimeFormatter.ofPattern("M/d/yy")).toString();
 	}
 
-	public Boolean isOKToDelete() {
-		if (this.getCategories().isEmpty())
-			return true;
-		else
-			return false;
+	public Boolean isOKToDelete() { // This needs some more work
+		for (TaxCategory category : this.getCategories()) {
+			if (!category.isOKToDelete())
+				return false; 
+		}
+		return true;
 	}
 
 	private ArrayList<TaxCategory> getCategories() {
@@ -92,7 +93,7 @@ public class TaxRate implements Comparable<TaxRate>{
 	}
 
 	public void addCategory(TaxCategory taxCategory) {
-		
+		this.categories.add(taxCategory);
 		
 	}
 

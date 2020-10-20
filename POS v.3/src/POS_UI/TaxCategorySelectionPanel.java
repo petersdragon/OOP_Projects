@@ -28,7 +28,7 @@ public class TaxCategorySelectionPanel extends JPanel {
 		setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Tax Category List");
-		lblNewLabel.setBounds(138, 10, 45, 13);
+		lblNewLabel.setBounds(174, 10, 101, 13);
 		add(lblNewLabel);
 		
 		DefaultListModel<TaxCategory> categoryList = new DefaultListModel<TaxCategory>();
@@ -52,7 +52,7 @@ public class TaxCategorySelectionPanel extends JPanel {
 				}
 			}
 		});
-		list.setBounds(73, 43, 197, 127);
+		list.setBounds(126, 43, 197, 127);
 		add(list);
 		
 		addButton = new JButton("Add");
@@ -63,7 +63,7 @@ public class TaxCategorySelectionPanel extends JPanel {
 				currentFrame.getContentPane().revalidate();
 			}
 		});
-		addButton.setBounds(32, 180, 85, 21);
+		addButton.setBounds(48, 180, 85, 21);
 		add(addButton);
 		
 		editButton = new JButton("Edit");
@@ -75,7 +75,7 @@ public class TaxCategorySelectionPanel extends JPanel {
 				currentFrame.getContentPane().revalidate();
 			}
 		});
-		editButton.setBounds(127, 180, 85, 21);
+		editButton.setBounds(181, 180, 85, 21);
 		add(editButton);
 		
 		deleteButton = new JButton("Delete");
@@ -89,7 +89,7 @@ public class TaxCategorySelectionPanel extends JPanel {
 				}
 			}
 		});
-		deleteButton.setBounds(222, 180, 85, 21);
+		deleteButton.setBounds(314, 180, 85, 21);
 		add(deleteButton);
 
 	}
