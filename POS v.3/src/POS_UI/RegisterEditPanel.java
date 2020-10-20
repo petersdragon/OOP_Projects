@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class RegisterEditPanel extends JPanel {
-	private JTextField textField;
+	private JTextField numberField;
 
 	/**
 	 * Create the panel.
@@ -20,43 +20,42 @@ public class RegisterEditPanel extends JPanel {
 	public RegisterEditPanel(JFrame currentFrame, Store store, Register register, Boolean isAdd) {
 		setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Register Edit");
-		lblNewLabel.setBounds(185, 10, 45, 13);
-		add(lblNewLabel);
+		JLabel registerLabel = new JLabel("Register Edit");
+		registerLabel.setBounds(185, 10, 45, 13);
+		add(registerLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(148, 73, 96, 19);
-		add(textField);
-		textField.setColumns(10);
+		numberField = new JTextField(register.getNumber());
+		numberField.setBounds(148, 73, 96, 19);
+		add(numberField);
+		numberField.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("Number");
-		lblNewLabel_1.setBounds(74, 76, 45, 13);
-		add(lblNewLabel_1);
+		JLabel numberLabel = new JLabel("Number");
+		numberLabel.setBounds(74, 76, 45, 13);
+		add(numberLabel);
 		
-		JButton btnNewButton = new JButton("Save");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton saveButton = new JButton("Save");
+		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				register.setNumber(textField.getText());
-				if (isAdd) { store.addRegister(register); }
+				register.setNumber(numberField.getText());
+				if (isAdd) { store.addRegister(register); } // If the number is already taken, it overrides the old register, even if it's tied to Sessions. This needs added error checking.
 				currentFrame.getContentPane().removeAll();
 				currentFrame.getContentPane().add(new RegisterSelectionPanel(currentFrame, store));
 				currentFrame.getContentPane().revalidate();
 			}
 		});
-		btnNewButton.setBounds(63, 194, 85, 21);
-		add(btnNewButton);
+		saveButton.setBounds(63, 194, 85, 21);
+		add(saveButton);
 		
-		JButton btnNewButton_1 = new JButton("Cancel");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton cancelButton = new JButton("Cancel");
+		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				currentFrame.getContentPane().removeAll();
-				if (isAdd)
-					currentFrame.getContentPane().add(new RegisterSelectionPanel(currentFrame, store));
+				currentFrame.getContentPane().add(new RegisterSelectionPanel(currentFrame, store));
 				currentFrame.getContentPane().revalidate();
 			}
 		});
-		btnNewButton_1.setBounds(238, 194, 85, 21);
-		add(btnNewButton_1);
+		cancelButton.setBounds(238, 194, 85, 21);
+		add(cancelButton);
 
 		
 	}

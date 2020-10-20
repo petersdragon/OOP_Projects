@@ -72,7 +72,7 @@ public class RegisterSelectionPanel extends JPanel {
 		editButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				currentFrame.getContentPane().removeAll();
-				currentFrame.getContentPane().add(new RegisterEditPanel(currentFrame, store, registerDisplayList.getSelectedValue(), true));
+				currentFrame.getContentPane().add(new RegisterEditPanel(currentFrame, store, registerDisplayList.getSelectedValue(), false));
 				currentFrame.getContentPane().revalidate();
 			}
 		});

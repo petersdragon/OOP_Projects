@@ -51,7 +51,7 @@ public class CashierEditPanel extends JPanel {
 				cashier.getPerson().setZip(zipField.getText());
 				cashier.getPerson().setPhone(phoneField.getText());
 				cashier.getPerson().setSSN(ssnField.getText());
-				if (isAdd) { store.addCashier(cashier); }
+				if (isAdd) { store.addCashier(cashier); } // If the employee number is already taken, it overrides the old employee, even if it's tied to Sessions. This needs added error checking.
 				currentFrame.getContentPane().removeAll();
 				currentFrame.getContentPane().add(new CashierSelectionPanel(currentFrame, store));
 				currentFrame.getContentPane().revalidate();

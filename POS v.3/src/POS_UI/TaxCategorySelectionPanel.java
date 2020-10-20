@@ -67,6 +67,7 @@ public class TaxCategorySelectionPanel extends JPanel {
 		add(addButton);
 		
 		editButton = new JButton("Edit");
+		editButton.setEnabled(false);
 		editButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				currentFrame.getContentPane().removeAll();
@@ -78,6 +79,7 @@ public class TaxCategorySelectionPanel extends JPanel {
 		add(editButton);
 		
 		deleteButton = new JButton("Delete");
+		deleteButton.setEnabled(false);
 		deleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TaxCategory category = list.getSelectedValue();

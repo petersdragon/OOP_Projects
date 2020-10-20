@@ -16,8 +16,8 @@ import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 
 public class TaxRateEditPanel extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField rateField;
+	private JTextField dateField;
 
 	/**
 	 * Create the panel.
@@ -25,34 +25,45 @@ public class TaxRateEditPanel extends JPanel {
 	public TaxRateEditPanel(JFrame currentFrame, JPanel currentPanel, Store store, TaxCategory taxCategory, TaxRate taxRate, Boolean isAdd) {
 		setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Tax Rate Edit");
-		lblNewLabel.setBounds(167, 10, 45, 13);
-		add(lblNewLabel);
+		JLabel ratePanelLabel = new JLabel("Tax Rate Edit");
+		ratePanelLabel.setBounds(167, 10, 45, 13);
+		add(ratePanelLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Rate");
-		lblNewLabel_1.setBounds(24, 43, 45, 13);
-		add(lblNewLabel_1);
+		JLabel rateLabel = new JLabel("Rate");
+		rateLabel.setBounds(24, 43, 45, 13);
+		add(rateLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(79, 40, 96, 19);
-		add(textField);
-		textField.setColumns(10);
+		String rateString = "";
+		String dateString = "";
+		if (!isAdd) {
+			rateString = taxRate.getTaxRate().toString();
+			dateString = taxRate.getEffectiveDate().format(DateTimeFormatter.ofPattern("M/d/yy")).toString();
+		}
 		
-		JLabel lblNewLabel_2 = new JLabel("Start Date");
-		lblNewLabel_2.setBounds(24, 76, 45, 13);
-		add(lblNewLabel_2);
+		rateField = new JTextField(rateString);
+		rateField.setBounds(79, 40, 96, 19);
+		add(rateField);
+		rateField.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(79, 69, 96, 19);
-		add(textField_1);
-		textField_1.setColumns(10);
+		JLabel dateLabel = new JLabel("Start Date");
+		dateLabel.setBounds(24, 76, 45, 13);
+		add(dateLabel);
+		
+		dateField = new JTextField(dateString);
+		dateField.setBounds(79, 69, 96, 19);
+		add(dateField);
+		dateField.setColumns(10);
 		
 		JButton saveButton = new JButton("Save");
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				taxRate.setTaxRate(new BigDecimal(textField.getText()));
-				taxRate.setEffectiveDate(LocalDate.parse(textField.getText(), DateTimeFormatter.ofPattern("M/d/yy")));
-				if(isAdd) taxCategory.addTaxRate(taxRate);
+				taxRate.setTaxRate(new BigDecimal(rateField.getText()));
+				taxRate.setEffectiveDate(LocalDate.parse(dateField.getText(), DateTimeFormatter.ofPattern("M/d/yy")));
+				if(isAdd) taxCategory.addTaxRate(taxRate);// If a duplicate with the same key exists, the old category will be lost, even if it was tied to Sessions. Need additional error checking here.
+				currentFrame.getContentPane().removeAll();
+				currentFrame.getContentPane().add(currentPanel);
+				currentFrame.getContentPane().revalidate();
+				currentFrame.getContentPane().repaint();
 			}
 		});
 		saveButton.setBounds(10, 136, 85, 21);

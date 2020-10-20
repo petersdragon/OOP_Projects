@@ -22,7 +22,9 @@ import javax.swing.event.AncestorEvent;
 
 public class TaxCategoryEditPanel extends JPanel {
 	private JTextField categoryField;
-	
+	private JList<TaxRate> taxRatesDisplayList;
+	private JButton editButton;
+	private JButton deleteButton;
 	/**
 	 * Create the panel.
 	 */
@@ -34,6 +36,7 @@ public class TaxCategoryEditPanel extends JPanel {
 				DefaultListModel<TaxRate> taxRateList = new DefaultListModel<TaxRate>();
 				for (TaxRate rate : category.getTaxRates())
 					taxRateList.addElement(rate);	
+				taxRatesDisplayList.setModel(taxRateList);
 			}
 			public void ancestorMoved(AncestorEvent event) {
 			}
@@ -50,7 +53,7 @@ public class TaxCategoryEditPanel extends JPanel {
 		categoryLabel.setBounds(21, 54, 45, 13);
 		add(categoryLabel);
 		
-		categoryField = new JTextField();
+		categoryField = new JTextField(category.getCategory());
 		categoryField.setBounds(76, 51, 96, 19);
 		add(categoryField);
 		categoryField.setColumns(10);
@@ -65,9 +68,20 @@ public class TaxCategoryEditPanel extends JPanel {
 		for (TaxRate rate : category.getTaxRates())
 			taxRateList.addElement(rate);
 		
-		JList<TaxRate> taxRatesDisplayList = new JList<TaxRate>(taxRateList);
+		taxRatesDisplayList = new JList<TaxRate>(taxRateList);
 		taxRatesDisplayList.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
+				if (!taxRatesDisplayList.isSelectionEmpty()) {
+					editButton.setEnabled(true);
+					if (taxRatesDisplayList.getSelectedValue().isOKToDelete())
+						deleteButton.setEnabled(true);
+					else
+						deleteButton.setEnabled(false);
+				}
+				else {
+					editButton.setEnabled(false);
+					deleteButton.setEnabled(false);
+				}
 			}
 		});
 		taxRatesDisplayList.setBounds(240, 53, 189, 119);
@@ -77,9 +91,9 @@ public class TaxCategoryEditPanel extends JPanel {
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				category.setCategory(categoryField.getText());
-				if (isAdd) { store.addTaxCategory(category); }
+				if (isAdd) { store.addTaxCategory(category); } // If a duplicate with the same key exists, the old category will be lost, even if it was tied to Sessions. Need additional error checking here.
 				currentFrame.getContentPane().removeAll();
-				currentFrame.getContentPane().add(new CashierSelectionPanel(currentFrame, store));
+				currentFrame.getContentPane().add(new TaxCategorySelectionPanel(currentFrame, store));
 				currentFrame.getContentPane().revalidate();
 			}
 		});
@@ -101,25 +115,27 @@ public class TaxCategoryEditPanel extends JPanel {
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				currentFrame.getContentPane().removeAll();
-				currentFrame.getContentPane().add(new TaxRateEditPanel(currentFrame, currentPanel, store, category, new TaxRate(), isAdd));
+				currentFrame.getContentPane().add(new TaxRateEditPanel(currentFrame, currentPanel, store, category, new TaxRate(), true));
 				currentFrame.getContentPane().revalidate();
 			}
 		});
 		addButton.setBounds(240, 182, 56, 21);
 		add(addButton);
 		
-		JButton editButton = new JButton("Edit");
+		editButton = new JButton("Edit");
+		editButton.setEnabled(false);
 		editButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				currentFrame.getContentPane().removeAll();
-				currentFrame.getContentPane().add(new TaxRateEditPanel(currentFrame, currentPanel, store, category, taxRatesDisplayList.getSelectedValue(), true));
+				currentFrame.getContentPane().add(new TaxRateEditPanel(currentFrame, currentPanel, store, category, taxRatesDisplayList.getSelectedValue(), false));
 				currentFrame.getContentPane().revalidate();
 			}
 		});
 		editButton.setBounds(305, 182, 56, 21);
 		add(editButton);
 		
-		JButton deleteButton = new JButton("Delete");
+		deleteButton = new JButton("Delete");
+		deleteButton.setEnabled(false);
 		deleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TaxRate rate = taxRatesDisplayList.getSelectedValue();
