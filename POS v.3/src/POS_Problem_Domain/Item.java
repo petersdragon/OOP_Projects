@@ -185,5 +185,12 @@ public class Item {
 		return this.getNumber() + " " + this.getDescription() + " Price: " + this.getPriceForDate(LocalDate.now()).toString() + " Tax Rate: " + this.getTaxRateForDate(LocalDate.now()) + " " + upcString;
 	}
 
+	public Boolean isOKToDelete() {
+		if (this.getSaleLineItems().isEmpty())
+			return true;
+		else
+			return false;
+	}
+
 
 }

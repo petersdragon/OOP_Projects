@@ -118,6 +118,10 @@ public class Cashier {
 			return false;
 	}
 	
+//	public BigDecimal calcDollarSales(Date){
+		//if sale was on that date, add it. Sum them, and return the number of sales there were in the session
+//	}
+	
 	/**
 	 * Organize the relevant data related to the Cashier into a single string to print to a screen
 	 */
