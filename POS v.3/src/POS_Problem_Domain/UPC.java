@@ -54,4 +54,8 @@ public class UPC {
 		return upc;
 	}
 
+	public Boolean isOKToDelete() {
+		return true; // This desperately needs to be done properly
+	}
+
 }

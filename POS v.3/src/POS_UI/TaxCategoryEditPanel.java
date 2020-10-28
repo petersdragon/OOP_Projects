@@ -84,7 +84,7 @@ public class TaxCategoryEditPanel extends JPanel {
 				}
 			}
 		});
-		taxRatesDisplayList.setBounds(217, 53, 212, 119);
+		taxRatesDisplayList.setBounds(217, 53, 183, 119);
 		add(taxRatesDisplayList);
 		
 		JButton saveButton = new JButton("Save");
@@ -131,7 +131,7 @@ public class TaxCategoryEditPanel extends JPanel {
 				currentFrame.getContentPane().revalidate();
 			}
 		});
-		editButton.setBounds(290, 182, 56, 21);
+		editButton.setBounds(276, 182, 56, 21);
 		add(editButton);
 		
 		deleteButton = new JButton("Delete");
@@ -142,12 +142,12 @@ public class TaxCategoryEditPanel extends JPanel {
 					category.removeTaxRate(selectedRate);
 					taxRateList.removeElement(selectedRate);
 					currentFrame.getContentPane().removeAll();
-					currentFrame.getContentPane().add(new TaxCategoryEditPanel(currentFrame, store, category, isAdd));
+					currentFrame.getContentPane().add(currentPanel);
 					currentFrame.getContentPane().revalidate();
 				}
 			}
 		});
-		deleteButton.setBounds(360, 182, 69, 21);
+		deleteButton.setBounds(334, 182, 69, 21);
 		deleteButton.setEnabled(false);
 		add(deleteButton);
 		

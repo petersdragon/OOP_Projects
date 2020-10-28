@@ -96,4 +96,8 @@ public class Price implements Comparable<Price> {
 		return "$" + this.getPrice().toString();
 	}
 
+	public Boolean isOKToDelete() {//this needs additional work to make it be smart
+		return true;
+	}
+
 }

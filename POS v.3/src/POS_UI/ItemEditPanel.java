@@ -27,7 +27,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.event.AncestorEvent;
 
 public class ItemEditPanel extends JPanel {
-	private JTextField numberField;
+	private JTextField itemNumberField;
 	private JTextField descriptionField;
 	private JList<UPC> upcList;
 	private JButton upcAddButton;
@@ -42,6 +42,10 @@ public class ItemEditPanel extends JPanel {
 	public ItemEditPanel(JFrame currentFrame, Store store, Item item, Boolean isAdd) {
 		addAncestorListener(new AncestorListener() {
 			public void ancestorAdded(AncestorEvent event) {
+				DefaultListModel<UPC> UPCList = new DefaultListModel<UPC>();
+				for (UPC upc : item.getUpcs().values())
+					UPCList.addElement(upc);	
+				upcList.setModel(UPCList);
 			}
 			public void ancestorMoved(AncestorEvent event) {
 			}
@@ -55,26 +59,26 @@ public class ItemEditPanel extends JPanel {
 		itemPanelLabel.setBounds(202, 10, 45, 13);
 		add(itemPanelLabel);
 		
-		JLabel itemNumberField = new JLabel("Item Number:");
-		itemNumberField.setBounds(10, 60, 66, 13);
-		add(itemNumberField);
+		JLabel itemNumberLabel = new JLabel("Item Number:");
+		itemNumberLabel.setBounds(0, 60, 66, 13);
+		add(itemNumberLabel);
 		
-		numberField = new JTextField();
-		numberField.setBounds(86, 60, 96, 19);
-		add(numberField);
-		numberField.setColumns(10);
+		itemNumberField = new JTextField(item.getNumber());
+		itemNumberField.setBounds(75, 60, 96, 19);
+		add(itemNumberField);
+		itemNumberField.setColumns(10);
 		
 		JLabel descriptionLabel = new JLabel("Description:");
-		descriptionLabel.setBounds(10, 94, 66, 13);
+		descriptionLabel.setBounds(0, 94, 66, 13);
 		add(descriptionLabel);
 		
-		descriptionField = new JTextField();
-		descriptionField.setBounds(86, 94, 161, 19);
+		descriptionField = new JTextField(item.getDescription());
+		descriptionField.setBounds(75, 94, 161, 19);
 		add(descriptionField);
 		descriptionField.setColumns(10);
 		
 		JLabel cetegoryLabel_3 = new JLabel("Tax Category:");
-		cetegoryLabel_3.setBounds(10, 126, 66, 13);
+		cetegoryLabel_3.setBounds(0, 126, 66, 13);
 		add(cetegoryLabel_3);
 		
 		DefaultComboBoxModel<TaxCategory> categoryList = new DefaultComboBoxModel<TaxCategory>();
@@ -86,7 +90,7 @@ public class ItemEditPanel extends JPanel {
 			public void itemStateChanged(ItemEvent e) {
 			}
 		});
-		comboBox.setBounds(86, 125, 96, 21);
+		comboBox.setBounds(75, 125, 96, 21);
 		add(comboBox);
 		
 		DefaultListModel<UPC> upcs = new DefaultListModel<UPC>();
@@ -107,56 +111,47 @@ public class ItemEditPanel extends JPanel {
 				}
 			}
 		});
-		upcList.setBounds(10, 165, 210, 69);
+		upcList.setBounds(243, 26, 111, 69);
 		add(upcList);
 		
 		upcAddButton = new JButton("Add");
 		upcAddButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				currentFrame.getContentPane().removeAll();
+				currentFrame.getContentPane().add(new UPCEditPanel(currentFrame, currentPanel, item, new UPC(), true));
+				currentFrame.getContentPane().revalidate();
 			}
 		});
-		upcAddButton.setBounds(10, 244, 66, 21);
+		upcAddButton.setBounds(358, 32, 60, 21);
 		add(upcAddButton);
 		
 		upcEditButton = new JButton("Edit");
 		upcEditButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				currentFrame.getContentPane().removeAll();
+				currentFrame.getContentPane().add(new UPCEditPanel(currentFrame, currentPanel, item, upcList.getSelectedValue(), false));
+				currentFrame.getContentPane().revalidate();
 			}
 		});
-		upcEditButton.setBounds(83, 244, 66, 21);
+		upcEditButton.setBounds(358, 53, 60, 21);
+		upcEditButton.setEnabled(false);
 		add(upcEditButton);
 		
-		upcDeleteButton = new JButton("Delete");
+		upcDeleteButton = new JButton("Del");
 		upcDeleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			}
+				if(upcList.getSelectedValue().isOKToDelete()) { // Needs additional work in isOKToDelete()
+					item.removeUPC(upcList.getSelectedValue());
+					upcs.removeElement(upcList.getSelectedValue());
+					currentFrame.getContentPane().removeAll();
+					currentFrame.getContentPane().add(currentPanel);
+					currentFrame.getContentPane().revalidate();
+				}
+			}  
 		});
-		upcDeleteButton.setBounds(154, 244, 66, 21);
+		upcDeleteButton.setBounds(358, 74, 60, 21);
+		upcDeleteButton.setEnabled(false);
 		add(upcDeleteButton);
-		
-		priceDeleteButton = new JButton("Delete");
-		priceDeleteButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		priceDeleteButton.setBounds(374, 244, 66, 21);
-		add(priceDeleteButton);
-		
-		priceAddButton = new JButton("Add");
-		priceAddButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		priceAddButton.setBounds(230, 244, 66, 21);
-		add(priceAddButton);
-		
-		priceEditButton = new JButton("Edit");
-		priceEditButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		priceEditButton.setBounds(303, 244, 66, 21);
-		add(priceEditButton);
 		
 		DefaultListModel<Price> prices = new DefaultListModel<Price>();
 		for (Price price : item.getPrices())
@@ -175,20 +170,61 @@ public class ItemEditPanel extends JPanel {
 				}
 			}
 		});
-		priceList.setBounds(230, 165, 210, 69);
+		priceList.setBounds(243, 117, 111, 69);
 		add(priceList);
+		
+		priceAddButton = new JButton("Add");
+		priceAddButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				currentFrame.getContentPane().removeAll();
+				currentFrame.getContentPane().add(new PriceEditPanel(currentFrame, currentPanel, item, new Price(), true));
+				currentFrame.getContentPane().revalidate();
+			}
+		});
+		priceAddButton.setBounds(358, 122, 60, 21);
+		add(priceAddButton);
+		
+		priceEditButton = new JButton("Edit");
+		priceEditButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				currentFrame.getContentPane().removeAll();
+				currentFrame.getContentPane().add(new PriceEditPanel(currentFrame, currentPanel, item, priceList.getSelectedValue(), false));
+				currentFrame.getContentPane().revalidate();
+			}
+		});
+		priceEditButton.setBounds(358, 144, 60, 21);
+		priceEditButton.setEnabled(false);
+		add(priceEditButton);
+		
+		priceDeleteButton = new JButton("Del");
+		priceDeleteButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(priceList.getSelectedValue().isOKToDelete()) { // Needs additional work in isOKToDelete()
+					item.removePrice(priceList.getSelectedValue());
+					upcs.removeElement(priceList.getSelectedValue());
+					currentFrame.getContentPane().removeAll();
+					currentFrame.getContentPane().add(currentPanel);
+					currentFrame.getContentPane().revalidate();
+				}
+			}
+		});
+		priceDeleteButton.setBounds(358, 165, 60, 21);
+		priceDeleteButton.setEnabled(false);
+		add(priceDeleteButton);
 		
 		JButton saveButton = new JButton("Save");
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				item.setNumber(itemNumberField.getText());
 				item.setDescription(descriptionField.getText());
-				item.setTaxCategory((TaxCategory)comboBox.getSelectedItem());
-				if (isAdd) { store.addItem(item); } // If the employee number is already taken, it overrides the old employee, even if it's tied to Sessions. This needs added error checking.
-
+				item.setTaxCategory((TaxCategory)comboBox.getSelectedItem()); // add TaxCategory to item
+				if (isAdd) { store.addItem(item); } // If the item is already taken, it overrides the old one, even if it's tied to things. This needs added error checking.
+				currentFrame.getContentPane().removeAll();
+				currentFrame.getContentPane().add(new ItemSelectionPanel(currentFrame, store));
+				currentFrame.getContentPane().revalidate();
 			}
 		});
-		saveButton.setBounds(355, 91, 85, 21);
+		saveButton.setBounds(53, 165, 85, 21);
 		add(saveButton);
 		
 		JButton cancelButton = new JButton("Cancel");
@@ -199,7 +235,7 @@ public class ItemEditPanel extends JPanel {
 				currentFrame.getContentPane().revalidate();
 			}
 		});
-		cancelButton.setBounds(355, 125, 85, 21);
+		cancelButton.setBounds(148, 165, 85, 21);
 		add(cancelButton);
 
 	}

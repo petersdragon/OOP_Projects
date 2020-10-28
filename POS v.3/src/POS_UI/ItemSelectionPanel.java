@@ -52,7 +52,7 @@ public class ItemSelectionPanel extends JPanel {
 				}
 			}
 		});
-		list.setBounds(66, 33, 317, 155);
+		list.setBounds(10, 33, 430, 125);
 		add(list);
 		
 		addButton = new JButton("Add");
@@ -63,7 +63,7 @@ public class ItemSelectionPanel extends JPanel {
 				currentFrame.getContentPane().revalidate();
 			}
 		});
-		addButton.setBounds(66, 212, 85, 21);
+		addButton.setBounds(66, 168, 85, 21);
 		add(addButton);
 		
 		editButton = new JButton("Edit");
@@ -75,7 +75,7 @@ public class ItemSelectionPanel extends JPanel {
 				currentFrame.getContentPane().revalidate();
 			}
 		});
-		editButton.setBounds(180, 212, 85, 21);
+		editButton.setBounds(180, 168, 85, 21);
 		add(editButton);
 		
 		deleteButton = new JButton("Delete");
@@ -89,7 +89,7 @@ public class ItemSelectionPanel extends JPanel {
 				}
 			}
 		});
-		deleteButton.setBounds(298, 212, 85, 21);
+		deleteButton.setBounds(298, 168, 85, 21);
 		add(deleteButton);
 
 	}
